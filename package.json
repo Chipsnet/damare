@@ -1,8 +1,11 @@
 {
-  "name": "damare",
-  "version": "1.0.0",
-  "main": "index.js",
-  "repository": "https://github.com/Chipsnet/damare.git",
-  "author": "Minato Minami <doronomori660@outlook.jp>",
-  "license": "GPL-2.0"
+    "name": "damare",
+    "version": "1.0.0",
+    "main": "index.js",
+    "repository": "https://github.com/Chipsnet/damare.git",
+    "author": "Minato Minami <doronomori660@outlook.jp>",
+    "license": "GPL-2.0",
+    "scripts": {
+        "start": "node index.js"
+    }
 }
