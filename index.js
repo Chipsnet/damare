@@ -44,6 +44,7 @@ const broadcast = client.voice.createBroadcast();
 let connection = null;
 let readMessages = [];
 let canReadMessage = true;
+let readChannel = null;
 
 client.on('ready', () => {
     log.info('Discord login success! Logged in as : ' + client.user.tag);
@@ -52,8 +53,11 @@ client.on('ready', () => {
 client.on('message', async message => {
     if (!message.guild) return;
 
+    if (message.guild.id != "464801398928834571") return;
+
     if (message.content === ']talk') {
         if (message.member.voice.channel) {
+            readChannel = message.channel.id
             connection = await message.member.voice.channel.join();
             connection.play(broadcast, {volume: 0.3});
             message.reply('✨ VCに接続しました！');
@@ -70,7 +74,7 @@ client.on('message', async message => {
         }
     }
 
-    if (message.channel.id === '464817274595835952' && message.content != ']talk' && message.author.bot == false) {
+    if (message.channel.id === readChannel && message.content != ']talk' && message.author.bot == false) {
         if (message.content.startsWith('http')) {
             message.content = "ユーアールエル"
         } 
