@@ -53,7 +53,7 @@ client.on('ready', () => {
 client.on('message', async message => {
     if (!message.guild) return;
 
-    if (message.guild.id != "464801398928834571") return;
+    if (message.guild.id != config.useguild) return;
 
     if (message.content === ']talk') {
         if (message.member.voice.channel) {
