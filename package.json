@@ -6,9 +6,15 @@
     "author": "Minato Minami <doronomori660@outlook.jp>",
     "license": "GPL-2.0",
     "scripts": {
-        "start": "node index.js"
+        "start": "node index.js | bunyan -l debug"
     },
     "dependencies": {
-        "discord.js": "^12.5.3"
+        "@discordjs/opus": "^0.5.3",
+        "bunyan": "^1.8.15",
+        "chokidar": "^3.5.2",
+        "discord.js": "^12.5.3",
+        "encoding-japanese": "^1.0.30",
+        "ffmpeg-static": "^4.4.0",
+        "js-yaml": "^4.1.0"
     }
 }
