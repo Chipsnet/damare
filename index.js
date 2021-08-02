@@ -45,6 +45,7 @@ let connection = null;
 let readMessages = [];
 let canReadMessage = true;
 let readChannel = null;
+let prefix = config.prefix;
 
 client.on('ready', () => {
     log.info('Discord login success! Logged in as : ' + client.user.tag);
@@ -55,7 +56,7 @@ client.on('message', async message => {
 
     if (message.guild.id != config.useguild) return;
 
-    if (message.content === ']talk') {
+    if (message.content === `${prefix}talk`) {
         if (message.member.voice.channel) {
             readChannel = message.channel.id
             connection = await message.member.voice.channel.join();
@@ -64,7 +65,7 @@ client.on('message', async message => {
         }
     }
 
-    if (message.content === ']stop') {
+    if (message.content === `${prefix}stop`) {
         if (connection === null) {
             message.reply('⚠ ボイスチャンネルに接続されていないので、切断ができませんでした。');
         } else {
@@ -74,26 +75,26 @@ client.on('message', async message => {
         }
     }
 
-    if (message.content === ']reset') {
+    if (message.content === `${prefix}reset`) {
         readMessages = [];
         canReadMessage = true;
         message.reply('💥 読み上げ状態をリセットしました');
     }
 
-    if (message.content === ']help') {
+    if (message.content === `${prefix}help`) {
         message.reply('```\n'+
             'Damare 読み上げBot コマンドリスト\n' +
             'Author:巳波みなと Version:v' + packageJson.version + '\n' +
             'https://github.com/Chipsnet/damare\n\n' +
-            ']talk : 現在のテキストチャンネルを現在入っているVCで読み上げます。\n' +
-            ']stop : 再生を停止してVCから切断します。\n' +
-            ']reset : 読み上げ状態や内部のキューをリセットします。問題が発生した場合にのみ使用してください。\n' +
-            ']help : ヘルプを表示します。\n' +
+            `${prefix}talk : 現在のテキストチャンネルを現在入っているVCで読み上げます。\n` +
+            `${prefix}stop : 再生を停止してVCから切断します。\n` +
+            `${prefix}reset : 読み上げ状態や内部のキューをリセットします。問題が発生した場合にのみ使用してください。\n` +
+            `${prefix}help : ヘルプを表示します。\n` +
             '```'
         );
     }
 
-    if (message.channel.id === readChannel && message.content != ']talk' && message.author.bot == false) {
+    if (message.channel.id === readChannel && message.content != ']talk' && message.author.bot == false && message.content.startsWith(prefix) == false) {
         if (message.content.startsWith('http')) {
             message.content = "ユーアールエル"
         } 
