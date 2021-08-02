@@ -36,10 +36,12 @@ yarn install
 
 `damare/config.yml` を作成し、以下のように編集します。      
 guildIdでは、使用するサーバーのIDを入力してください。
+prefixには、コマンドとして認識するための識別子を入力します。（例えばprefixに`;`を設定すると、コマンドは`;help`のようになります。）
 
 ```yml
 token: token
 useguild: guildId
+prefix: ";"
 ```
 
 以下のコマンドで実行します
