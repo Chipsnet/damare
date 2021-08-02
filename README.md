@@ -35,7 +35,7 @@ yarn install
 [Discord Developer Portal](https://discord.com/developers/applications)にアクセスして、アプリケーションのトークンを取得します。
 
 `damare/config.yml` を作成し、以下のように編集します。      
-guildIdでは、使用するサーバーのIDを入力してください。
+guildIdでは、使用するサーバーのIDを入力してください。       
 prefixには、コマンドとして認識するための識別子を入力します。（例えばprefixに`;`を設定すると、コマンドは`;help`のようになります。）
 
 ```yml
