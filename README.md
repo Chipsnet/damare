@@ -32,9 +32,19 @@ yarn install
 
 [Softalk](https://www.vector.co.jp/soft/winnt/art/se412443.html)をダウンロードして、解凍、中から出てきた `softalk` フォルダを `damare/softalk` に配置します。
 
+`damare/softalk/SofTalk.exe` を実行し、環境設定を開きます。
+
+![](https://i.gyazo.com/a19435f44264640bbc57a80038a4922d.png)
+
+`録音`タブを開き、`録音時は読み上げを省略する`にチェックを入れます。
+
+![](https://i.gyazo.com/e50302643ac4ca110999947dcf55ce91.png)
+
+完了したらSoftalkを終了します。
+
 [Discord Developer Portal](https://discord.com/developers/applications)にアクセスして、アプリケーションのトークンを取得します。
 
-`damare/config.yml` を作成し、以下のように編集します。      
+`damare/config.yml`を作成し、以下のように編集します。      
 guildIdでは、使用するサーバーのIDを入力してください。       
 prefixには、コマンドとして認識するための識別子を入力します。（例えばprefixに`;`を設定すると、コマンドは`;help`のようになります。）
 
@@ -49,6 +59,19 @@ prefix: ";"
 ```bash
 yarn start
 ```
+
+## Q&A
+
+### Botが読み上げなくなった
+
+内部エラーによりキューの処理が正常にされなかった可能性があります。      
+`reset`コマンドを実行してみてください。それでも直らない場合は`stop`で一度停止してから`talk`で再度読み上げ開始してみてください。
+
+それでも直らない場合はお手数ですがBotを再起動してください。
+
+### Botを実行すると実行したPCがうるさい
+
+使い方にある`録音時は読み上げを省略する`にチェックを入れたかどうか確認してください。
 
 ## お布施
 
