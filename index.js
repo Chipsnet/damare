@@ -74,6 +74,12 @@ client.on('message', async message => {
         }
     }
 
+    if (message.content === ']reset') {
+        readMessages = [];
+        canReadMessage = true;
+        message.reply('💥 読み上げ状態をリセットしました');
+    }
+
     if (message.channel.id === readChannel && message.content != ']talk' && message.author.bot == false) {
         if (message.content.startsWith('http')) {
             message.content = "ユーアールエル"
