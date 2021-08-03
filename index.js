@@ -115,13 +115,13 @@ async function softalk() {
     canReadMessage = false;
     let mes = readMessages.shift();
 
-    mes = mes.replaceAll('|', '')
-    mes = mes.replaceAll(';', '')
-    mes = mes.replaceAll('&', '')
-    mes = mes.replaceAll('-', '')
-    mes = mes.replaceAll(':', '')
-    mes = mes.replaceAll('\\', '')
-    mes = mes.replaceAll('/', '')
+    mes = mes.split('|').join('')
+    mes = mes.split(';').join('')
+    mes = mes.split('&').join('')
+    mes = mes.split('-').join('')
+    mes = mes.split('\\').join('')
+    mes = mes.split('/').join('')
+    mes = mes.split(':').join('')
 
     log.debug('softalk talk message: ' + mes);
     log.debug('in queue' + readMessages);
