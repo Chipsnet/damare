@@ -72,6 +72,7 @@ client.on('message', async message => {
             connection.disconnect();
             message.reply('👍 無事切断できました')
             connection = null;
+            readChannel = null;
         }
     }
 
