@@ -122,6 +122,18 @@ async function softalk() {
     mes = mes.split('\\').join('')
     mes = mes.split('/').join('')
     mes = mes.split(':').join('')
+    mes = mes.split('<').join('')
+    mes = mes.split('>').join('')
+    mes = mes.split('$').join('')
+    mes = mes.split('*').join('')
+    mes = mes.split('?').join('')
+    mes = mes.split('{').join('')
+    mes = mes.split('}').join('')
+    mes = mes.split('[').join('')
+    mes = mes.split(']').join('')
+    mes = mes.split('!').join('')
+    mes = mes.split('`').join('')
+
 
     log.debug('softalk talk message: ' + mes);
     log.debug('in queue' + readMessages);
