@@ -7,6 +7,10 @@
 DamareはDiscord読み上げBotです。    
 Windowsでのみ動作して、Softalkに依存しています。
 
+## YouTube紹介動画
+
+[![](https://img.youtube.com/vi/kt_3HDIt3gQ/0.jpg)](https://www.youtube.com/watch?v=kt_3HDIt3gQ)
+
 ## 前提条件
 
 - Windows
