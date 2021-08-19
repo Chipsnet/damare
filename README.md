@@ -23,7 +23,7 @@ Windowsでのみ動作して、Softalkに依存しています。
 まずはこのリポジトリをクローンします
 
 ```bash
-git clone https://github.com/Chipsnet/damare.git
+git clone git://github.com/Chipsnet/damare.git
 ```
 
 リポジトリのディレクトリへ移動します
