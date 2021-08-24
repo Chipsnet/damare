@@ -95,7 +95,7 @@ client.on('message', async message => {
         );
     }
 
-    if (message.channel.id === readChannel && message.content != ']talk' && message.author.bot == false && message.content.startsWith(prefix) == false) {
+    if (message.channel.id === readChannel && message.content != `${prefix}talk` && message.author.bot == false && message.content.startsWith(prefix) == false) {
         if (message.content.startsWith('http')) {
             message.content = "ユーアールエル"
         } 
