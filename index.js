@@ -117,6 +117,7 @@ async function softalk() {
 
     mes = mes.replace(/<.*?>/g, "")
     mes = mes.replace(/:.*?:/g, "")
+    mes = mes.replace(/\|\|.*?\|\|/g, "伏せ字")
 
     mes = mes.split('|').join('')
     mes = mes.split(';').join('')
