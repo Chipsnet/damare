@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Damare - Selfhost discord reading bot</title>
+
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+            crossorigin="anonymous"
+        />
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+            crossorigin="anonymous"
+        ></script>
+
+        <style>
+            .global-nav {
+                width: 100%;
+                height: 35px;
+                margin-bottom: -5px;
+            }
+        </style>
+    </head>
+    <body>
+        <iframe
+            class="global-nav"
+            src="https://chipsnet.github.io/globalmenu/#software"
+            frameborder="0"
+        ></iframe>
+        <section class="shadow-sm" style="padding: 6em 10px">
+            <div class="container">
+                <h1>Damare</h1>
+                <p class="lead text-muted">
+                    自分で運営できるDiscordの読み上げBot
+                </p>
+
+                <p>
+                    <a href="#usage" class="btn btn-primary my-2">始めてみる</a>
+                    <a
+                        href="#"
+                        class="btn btn-secondary my-2"
+                        data-bs-toggle="modal"
+                        data-bs-target="#donate"
+                        >開発を支援する</a
+                    >
+                </p>
+            </div>
+        </section>
+        <main>
+            <section id="body">
+                <div class="container py-5">
+                    <h1>できること</h1>
+                    <div class="row align-items-center my-5">
+                        <div class="col">
+                            <div class="ratio ratio-16x9">
+                                <iframe
+                                    src="https://www.youtube.com/embed/kt_3HDIt3gQ"
+                                    title="YouTube video player"
+                                    allowfullscreen
+                                ></iframe>
+                            </div>
+                        </div>
+                        <div class="col text-end">
+                            <h3>読み上げBotを自分のモノにしよう。</h3>
+                            <p class="my-4">
+                                既存の読み上げBotは重い？セキュリティが心配？<br />
+                                Damareを使用して自分のモノにすれば、全て解決です。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row align-items-center my-5">
+                        <div class="col">
+                            <h3>永久に無料。</h3>
+                            <p class="my-4">
+                                有料のAPIを一切使っていないので、永久に無料で使うことができます。
+                            </p>
+                        </div>
+                        <div class="col text-center">
+                            <img src="free.svg" width="50%" alt="" srcset="" />
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="usage">
+                <div class="container py-5">
+                    <h1>始めよう</h1>
+                    <div class="accordion my-5" id="accordionExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button
+                                    class="accordion-button"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#collapseOne"
+                                    aria-expanded="true"
+                                    aria-controls="collapseOne"
+                                >
+                                    STEP1: 必要なものをインストールする
+                                </button>
+                            </h2>
+                            <div
+                                id="collapseOne"
+                                class="accordion-collapse collapse show"
+                                aria-labelledby="headingOne"
+                                data-bs-parent="#accordionExample"
+                            >
+                                <div class="accordion-body">
+                                    <h4 class="my-3">必要なもの</h4>
+                                    <ul>
+                                        <li>
+                                            Windows
+                                            (10で動作確認済み、たぶん11でも動きます)
+                                        </li>
+                                        <li>Node.js</li>
+                                        <li>Microsoft .NET Framework4.0</li>
+                                        <li>Yarn</li>
+                                    </ul>
+                                    <h4 class="my-4">Node.jsの導入</h4>
+                                    <img
+                                        src="https://i.gyazo.com/263fe21f090e9bb281f74915df9b46cd.png"
+                                        class="img-fluid shadow-sm"
+                                    /><br />
+                                    <p class="my-3">
+                                        <a
+                                            href="https://nodejs.org/ja/download/"
+                                            target="_blank"
+                                            >Node.jsダウンロードサイト</a
+                                        >を開き、Windows
+                                        Installerをクリックして、インストーラーをダウンロードします。<br />
+                                        その後、ダウンロードしたインストーラーを実行し、インストールします。
+                                    </p>
+                                    <h4 class="my-4">
+                                        Microsoft .NET Framework4.0の導入
+                                    </h4>
+                                    <img
+                                        src="https://i.gyazo.com/db62234a86775cb14319ae4d105b19e5.png"
+                                        class="img-fluid shadow-sm"
+                                    /><br />
+                                    <p class="my-3">
+                                        <a
+                                            href="https://www.microsoft.com/ja-jp/download/details.aspx?id=17851"
+                                            target="_blank"
+                                            >Microsoftのダウンロードサイト</a
+                                        >を開き、ダウンロードをクリックします。<br />
+                                        その後、ダウンロードしたファイルを実行し、インストールします。
+                                    </p>
+                                    <h4 class="my-4">Yarnの導入</h4>
+                                    <p class="mb-3">
+                                        Node.jsを導入している状態で、<code
+                                            >npm install -g yarn</code
+                                        >を実行すると導入ができます。<br>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button
+                                    class="accordion-button collapsed"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#collapseTwo"
+                                    aria-expanded="false"
+                                    aria-controls="collapseTwo"
+                                >
+                                    STEP2: トークンを準備する
+                                </button>
+                            </h2>
+                            <div
+                                id="collapseTwo"
+                                class="accordion-collapse collapse"
+                                aria-labelledby="headingTwo"
+                                data-bs-parent="#accordionExample"
+                            >
+                                <div class="accordion-body">
+                                    <strong
+                                        >This is the second item's accordion
+                                        body.</strong
+                                    >
+                                    It is hidden by default, until the collapse
+                                    plugin adds the appropriate classes that we
+                                    use to style each element. These classes
+                                    control the overall appearance, as well as
+                                    the showing and hiding via CSS transitions.
+                                    You can modify any of this with custom CSS
+                                    or overriding our default variables. It's
+                                    also worth noting that just about any HTML
+                                    can go within the
+                                    <code>.accordion-body</code>, though the
+                                    transition does limit overflow.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button
+                                    class="accordion-button collapsed"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#collapseThree"
+                                    aria-expanded="false"
+                                    aria-controls="collapseThree"
+                                >
+                                    STEP3: 設定して起動する
+                                </button>
+                            </h2>
+                            <div
+                                id="collapseThree"
+                                class="accordion-collapse collapse"
+                                aria-labelledby="headingThree"
+                                data-bs-parent="#accordionExample"
+                            >
+                                <div class="accordion-body">
+                                    <strong
+                                        >This is the third item's accordion
+                                        body.</strong
+                                    >
+                                    It is hidden by default, until the collapse
+                                    plugin adds the appropriate classes that we
+                                    use to style each element. These classes
+                                    control the overall appearance, as well as
+                                    the showing and hiding via CSS transitions.
+                                    You can modify any of this with custom CSS
+                                    or overriding our default variables. It's
+                                    also worth noting that just about any HTML
+                                    can go within the
+                                    <code>.accordion-body</code>, though the
+                                    transition does limit overflow.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <div
+            class="modal fade"
+            id="donate"
+            tabindex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+        >
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">
+                            開発を支援する
+                        </h5>
+                        <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                        ></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            支援に興味をもって頂きありがとうございます！<br />
+                            このソフトウェアは開発者巳波みなとによって無償で提供されています。ぜひ開発の支援をお願いします！
+                        </p>
+                        <p class="fs-5 mt-3">定期的に支援する</p>
+                        <a href="" class="btn btn-danger">Patreon</a>
+                        <a href="" class="btn btn-warning">PixivFanbox</a>
+                        <p class="fs-5 mt-3">1回だけ支援する</p>
+                        <a href="" class="btn btn-info">ko-fi</a>
+                        <a href="" class="btn btn-primary">PayPal</a>
+                    </div>
+                    <div class="modal-footer">
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            data-bs-dismiss="modal"
+                        >
+                            わかった！
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer
+            class="bd-footer p-3 p-md-5 mt-5 bg-light text-center text-sm-start"
+        >
+            <div class="container">
+                <ul class="bd-footer-links ps-0 mb-3">
+                    <li class="d-inline-block">
+                        <a href="https://github.com/twbs">GitHub</a>
+                    </li>
+                    <li class="d-inline-block ms-3">
+                        <a href="https://twitter.com/getbootstrap">Twitter</a>
+                    </li>
+                    <li class="d-inline-block ms-3">
+                        <a href="/docs/5.0/examples/">Examples</a>
+                    </li>
+                    <li class="d-inline-block ms-3">
+                        <a href="/docs/5.0/about/overview/">About</a>
+                    </li>
+                </ul>
+                <div>
+                    <p class="mb-0">
+                        <a href="/docs/5.0/about/team/">Bootstrapチーム</a
+                        >が愛を込めて設計し<a
+                            href="https://github.com/twbs/bootstrap/graphs/contributors"
+                            >コントリビュータ</a
+                        >と共に運営しています。
+                    </p>
+                    <p class="mb-0">
+                        <strong>v5.0.0-beta1</strong> コードライセンス
+                        <a
+                            href="https://github.com/twbs/bootstrap/blob/main/LICENSE"
+                            target="_blank"
+                            rel="license noopener"
+                            >MIT</a
+                        > ドキュメント
+                        <a
+                            href="https://creativecommons.org/licenses/by/3.0/"
+                            target="_blank"
+                            rel="license noopener"
+                            >CC BY 3.0</a
+                        >
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>
