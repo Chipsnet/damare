@@ -115,6 +115,8 @@ async function softalk() {
     canReadMessage = false;
     let mes = readMessages.shift();
 
+    mes = mes.replace(/<.*?>/g, "")
+
     mes = mes.split('|').join('')
     mes = mes.split(';').join('')
     mes = mes.split('&').join('')
