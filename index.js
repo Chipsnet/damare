@@ -139,7 +139,7 @@ async function softalk() {
     log.debug('softalk talk message: ' + mes);
     log.debug('in queue' + readMessages);
 
-    exec('"./softalk/SofTalk.exe" /NM:女性01 /R:' + __dirname + '\\voice.wav /T:0 /X:1 /V:100 /W:' + mes, { encoding: 'Shift_JIS' }, (error, stdout, stderr) => {
+    exec('"./softalk/SofTalk.exe" /NM:女性01 /R:' + __dirname + '\\voice.wav /T:0 /X:1 /V:100 /W:' + mes + '&& "./softalk/SofTalk.exe" /close', { encoding: 'Shift_JIS' }, (error, stdout, stderr) => {
         if (error) {
             log.error(toString(stderr));
             if (readMessages.length === 0) {
