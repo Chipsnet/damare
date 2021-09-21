@@ -96,10 +96,6 @@ client.on('message', async message => {
     }
 
     if (message.channel.id === readChannel && message.content != `${prefix}talk` && message.author.bot == false && message.content.startsWith(prefix) == false) {
-        if (message.content.startsWith('http')) {
-            message.content = "ユーアールエル"
-        } 
-
         if (canReadMessage) {
             log.debug(`Message recived. canReadMessage: ${canReadMessage}`)
             readMessages.push(message.content);
@@ -118,6 +114,7 @@ async function softalk() {
     mes = mes.replace(/<.*?>/g, "")
     mes = mes.replace(/:.*?:/g, "")
     mes = mes.replace(/\|\|.*?\|\|/g, "伏せ字")
+    mes = mes.replace(/(https?:\/\/[\x21-\x7e]+)/g, "ゆーあーるえる")
 
     mes = mes.split('|').join('')
     mes = mes.split(';').join('')
@@ -156,6 +153,8 @@ async function softalk() {
 }
 
 chokidar.watch("./voice.wav").on('change', () => {
+    log.debug('voice file changed.');
+
     let dispatcher = broadcast.play('./voice.wav');
 
     dispatcher.on('finish', () => {
