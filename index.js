@@ -31,13 +31,13 @@ try {
     process.exit(0)
 }
 
-const toString = (bytes) => {
+function toString (bytes) {
     return Encoding.convert(bytes, {
       from: 'SJIS',
       to: 'UNICODE',
       type: 'string',
     });
-};
+}
 
 const client = new Discord.Client();
 const broadcast = client.voice.createBroadcast();
