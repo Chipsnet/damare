@@ -21,6 +21,11 @@ if (fs.existsSync('./softalk/SofTalk.exe')) {
     exit()
 }
 
+if (fs.existsSync('./voice.wav')) {
+    log.debug('Voice file found. Deleted.')
+    fs.unlinkSync('./voice.wav');
+}
+
 try {
     config = yaml.load(
         fs.readFileSync("./config.yml", "utf-8")
@@ -31,13 +36,13 @@ try {
     process.exit(0)
 }
 
-const toString = (bytes) => {
+function toString (bytes) {
     return Encoding.convert(bytes, {
       from: 'SJIS',
       to: 'UNICODE',
       type: 'string',
     });
-};
+}
 
 const client = new Discord.Client();
 const broadcast = client.voice.createBroadcast();
@@ -96,10 +101,6 @@ client.on('message', async message => {
     }
 
     if (message.channel.id === readChannel && message.content != `${prefix}talk` && message.author.bot == false && message.content.startsWith(prefix) == false) {
-        if (message.content.startsWith('http')) {
-            message.content = "ユーアールエル"
-        } 
-
         if (canReadMessage) {
             log.debug(`Message recived. canReadMessage: ${canReadMessage}`)
             readMessages.push(message.content);
@@ -113,7 +114,13 @@ client.on('message', async message => {
 
 async function softalk() {
     canReadMessage = false;
+    log.debug(`canReadMessage set to ${canReadMessage} on softalk.`);
     let mes = readMessages.shift();
+
+    mes = mes.replace(/<.*?>/g, "")
+    mes = mes.replace(/:.*?:/g, "")
+    mes = mes.replace(/\|\|.*?\|\|/g, "伏せ字")
+    mes = mes.replace(/(https?:\/\/[\x21-\x7e]+)/g, "ゆーあーるえる")
 
     mes = mes.split('|').join('')
     mes = mes.split(';').join('')
@@ -134,14 +141,13 @@ async function softalk() {
     mes = mes.split('!').join('')
     mes = mes.split('`').join('')
 
-
-    log.debug('softalk talk message: ' + mes);
-    log.debug('in queue' + readMessages);
+    log.debug('Softalk talk message: ' + mes);
+    log.debug('In queue' + readMessages);
 
     exec('"./softalk/SofTalk.exe" /NM:女性01 /R:' + __dirname + '\\voice.wav /T:0 /X:1 /V:100 /W:' + mes, { encoding: 'Shift_JIS' }, (error, stdout, stderr) => {
         if (error) {
-            log.error(toString(stderr));
-            if (readMessages.length === 0) {
+            log.error("An error occurred while running Softalk.\n" + toString(stderr));
+            if (readMessages.length) {
                 canReadMessage = true;
             } else {
                 softalk();
@@ -151,12 +157,16 @@ async function softalk() {
     })
 }
 
-chokidar.watch("./voice.wav").on('change', () => {
+chokidar.watch("./voice.wav").on('add', () => {
+    log.debug('New file found.');
+
     let dispatcher = broadcast.play('./voice.wav');
 
     dispatcher.on('finish', () => {
-        if (readMessages.length === 0) {
+        fs.unlinkSync('./voice.wav');
+        if (!readMessages.length) {
             canReadMessage = true;
+            log.debug(`canReadMessage set to ${canReadMessage} by chokidar due to finish.`);
         } else {
             softalk();
         }
