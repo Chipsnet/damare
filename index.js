@@ -21,6 +21,11 @@ if (fs.existsSync('./softalk/SofTalk.exe')) {
     exit()
 }
 
+if (fs.existsSync('./voice.wav')) {
+    log.debug('Voice file found. Deleted.')
+    fs.unlinkSync('./voice.wav');
+}
+
 try {
     config = yaml.load(
         fs.readFileSync("./config.yml", "utf-8")
