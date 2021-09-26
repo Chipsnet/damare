@@ -52,7 +52,8 @@
             </div>
         </section>
         <main>
-            <section id="info">
+            <!--
+                            <section id="info">
                 <div class="container py-5">
                     <h1 class="mb-5">お知らせ・更新情報</h1>
                     <div class="row mb-4 mb-sm-0">
@@ -65,10 +66,11 @@
                     </div>
                 </div>
             </section>
+            -->
             <section id="body">
                 <div class="container py-5">
                     <h1>できること</h1>
-                    <div class="row align-items-center my-5">
+                    <div class="row row-cols-sm-2 row-cols-1 align-items-center my-5">
                         <div class="col">
                             <div class="ratio ratio-16x9">
                                 <iframe
@@ -78,23 +80,21 @@
                                 ></iframe>
                             </div>
                         </div>
-                        <div class="col text-end">
+                        <div class="col text-sm-end my-sm-0 my-4">
                             <h3>読み上げBotを自分のモノにしよう。</h3>
                             <p class="my-4">
                                 既存の読み上げBotは重い？セキュリティが心配？<br />
                                 Damareを使用して自分のモノにすれば、全て解決です。
                             </p>
                         </div>
-                    </div>
-                    <div class="row align-items-center my-5">
-                        <div class="col">
+                        <div class="col order-sm-2 text-center">
+                            <img src="free.svg" width="50%" alt="" srcset="" />
+                        </div>
+                        <div class="col order-sm-1 my-sm-0 my-4">
                             <h3>永久に無料。</h3>
                             <p class="my-4">
                                 有料のAPIを一切使っていないので、永久に無料で使うことができます。
                             </p>
-                        </div>
-                        <div class="col text-center">
-                            <img src="free.svg" width="50%" alt="" srcset="" />
                         </div>
                     </div>
                 </div>
@@ -102,15 +102,15 @@
             <section id="usage">
                 <div class="container py-5">
                     <h1>始めよう</h1>
-                    <div class="accordion my-5" id="accordionExample">
+                    <div class="accordion mt-4 mb-5" id="accordionExample">
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingOne">
                                 <button
-                                    class="accordion-button"
+                                    class="accordion-button collapsed"
                                     type="button"
                                     data-bs-toggle="collapse"
                                     data-bs-target="#collapseOne"
-                                    aria-expanded="true"
+                                    aria-expanded="false"
                                     aria-controls="collapseOne"
                                 >
                                     STEP1: 必要なものをインストールする
@@ -118,7 +118,7 @@
                             </h2>
                             <div
                                 id="collapseOne"
-                                class="accordion-collapse collapse show"
+                                class="accordion-collapse collapse"
                                 aria-labelledby="headingOne"
                                 data-bs-parent="#accordionExample"
                             >
@@ -132,6 +132,7 @@
                                         <li>Node.js</li>
                                         <li>Microsoft .NET Framework4.0</li>
                                         <li>Yarn</li>
+                                        <li>Git</li>
                                     </ul>
                                     <h4 class="my-4">Node.jsの導入</h4>
                                     <img
@@ -166,7 +167,19 @@
                                     <p class="mb-3">
                                         Node.jsを導入している状態で、<code
                                             >npm install -g yarn</code
-                                        >を実行すると導入ができます。<br>
+                                        >を実行すると導入ができます。<br />
+                                    </p>
+                                    <h4 class="my-4">Gitの導入</h4>
+                                    <p class="mb-3">
+                                        <img
+                                            src="https://i.gyazo.com/dd6c3882a02b75d2ce9551bc4655296b.png"
+                                            class="img-fluid shadow-sm mb-3"
+                                        /><br />
+                                        <a
+                                            href="https://git-scm.com/"
+                                            target="_blank"
+                                            >Git</a
+                                        >のサイトに行き、ダウンロード。その後実行してインストールします。
                                     </p>
                                 </div>
                             </div>
@@ -181,7 +194,7 @@
                                     aria-expanded="false"
                                     aria-controls="collapseTwo"
                                 >
-                                    STEP2: トークンを準備する
+                                    STEP2: トークンとSoftalkを準備する
                                 </button>
                             </h2>
                             <div
@@ -191,21 +204,54 @@
                                 data-bs-parent="#accordionExample"
                             >
                                 <div class="accordion-body">
-                                    <strong
-                                        >This is the second item's accordion
-                                        body.</strong
-                                    >
-                                    It is hidden by default, until the collapse
-                                    plugin adds the appropriate classes that we
-                                    use to style each element. These classes
-                                    control the overall appearance, as well as
-                                    the showing and hiding via CSS transitions.
-                                    You can modify any of this with custom CSS
-                                    or overriding our default variables. It's
-                                    also worth noting that just about any HTML
-                                    can go within the
-                                    <code>.accordion-body</code>, though the
-                                    transition does limit overflow.
+                                    <h4 class="my-4">
+                                        Discord Developer
+                                        Portalでトークンを取得する
+                                    </h4>
+                                    <p class="mb-3">
+                                        <a
+                                            href="https://discord.com/developers/applications"
+                                            target="_blank"
+                                            >まずはDiscord Developer Portal</a
+                                        >にアクセスして、トークンを取得します。<br />
+                                        やり方は<a
+                                            href="https://cod-sushi.com/discord-py-token/"
+                                            target="_blank"
+                                            >こちら</a
+                                        >を参照
+                                    </p>
+                                    <h4 class="my-4">Softalkの準備</h4>
+                                    <p class="mb-3">
+                                        まずは<a
+                                            href="http://www.vector.co.jp/soft/winnt/art/se412443.html"
+                                            target="_blank"
+                                            >Softalk</a
+                                        >をダウンロードします。<br />
+                                        ダウンロードしたzipファイルを解凍して出てきた
+                                        <code>softalk</code> フォルダを、<code
+                                            >damare/softalk</code
+                                        >
+                                        に配置します。
+                                    </p>
+                                    <img
+                                        src="https://i.gyazo.com/eb34e124f0b9be97843163cf89497185.png"
+                                        class="img-fluid shadow-sm mb-3"
+                                    />
+                                    <p class="mb-3">
+                                        このようなディレクトリ構成になります。
+                                    </p>
+                                    <img
+                                        src="https://i.gyazo.com/a19435f44264640bbc57a80038a4922d.png"
+                                        class="img-fluid shadow-sm mb-3"
+                                    />
+                                    <p class="mb-3">
+                                        <code>録音</code
+                                        >タブを開き、<code>録音時は読み上げを省略する</code>にチェックを入れます。
+                                    </p>
+                                    <img
+                                        src="https://i.gyazo.com/e50302643ac4ca110999947dcf55ce91.png"
+                                        class="img-fluid shadow-sm mb-3"
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -229,21 +275,71 @@
                                 data-bs-parent="#accordionExample"
                             >
                                 <div class="accordion-body">
-                                    <strong
-                                        >This is the third item's accordion
-                                        body.</strong
-                                    >
-                                    It is hidden by default, until the collapse
-                                    plugin adds the appropriate classes that we
-                                    use to style each element. These classes
-                                    control the overall appearance, as well as
-                                    the showing and hiding via CSS transitions.
-                                    You can modify any of this with custom CSS
-                                    or overriding our default variables. It's
-                                    also worth noting that just about any HTML
-                                    can go within the
-                                    <code>.accordion-body</code>, though the
-                                    transition does limit overflow.
+                                    <h4 class="my-4">Configファイルの作成</h4>
+                                    <img src="https://i.gyazo.com/0aa51c8cfa7735e0462f1ed9d206f836.png" class="img-fluid shadow-sm mb-3">
+                                    <p class="mb-3">
+                                        <code>damare/config.yml</code
+                                        >を作成して、以下のように記述します。<br>
+<pre>
+<code>
+token: token
+useguild: guildId
+prefix: ";"
+</code>
+</pre>
+                                        <code>token</code>には、作成したトークンを入力します。<br>
+                                        <code>useguild</code>には、使用するサーバーのIDを入力します。<br>
+                                        <code>prefix</code>には、コマンドとして認識するための識別子を入力します。（例えばprefixに<code>;</code>を設定すると、コマンドは<code>;help</code>のようになります。）<br>
+                                    </p>
+                                    <h4 class="my-4">起動する</h4>
+                                    <p class="mb-3">
+                                        まず、<code>yarn install</code>を実行します。
+                                    </p>
+                                    <p class="mb-3">
+                                        次に、<code>yarn start</code>を実行します。<br>
+                                        これで起動ができました。<br>
+                                        次回からは、<code>yarn start</code>を実行するだけで実行できます。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button
+                                    class="accordion-button collapsed"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#collapseFour"
+                                    aria-expanded="false"
+                                    aria-controls="collapseFour"
+                                >
+                                    アップデート方法
+                                </button>
+                            </h2>
+                            <div
+                                id="collapseFour"
+                                class="accordion-collapse collapse"
+                                aria-labelledby="headingFour"
+                                data-bs-parent="#accordionExample"
+                            >
+                                <div class="accordion-body">
+                                    <h4 class="my-4">アップデートを取得する</h4>
+                                    <p class="mb-3">
+                                        アップデートを取得します。<br>
+                                        <code>git pull</code>を実行します。<br>
+                                        <code>Already up to date.</code> と表示されたら、アップデートがありません。<br>
+                                        現時点では、アップデートがあるか自動で確認する機能はないので、定期的にコマンドを実行してアップデートを取得してください。
+                                    </p>
+                                    <h4 class="my-4">依存関係を更新する</h4>
+                                    <p class="mb-3">
+                                        <code>Already up to date.</code> が表示サれなかった場合、アップデートがあります。<br>
+                                        アップデートがあった場合、依存関係の更新が必要なことがあります。<br>
+                                        <code>yarn install</code>を実行します。
+                                    </p>
+                                    <p class="mb-3">
+                                        以上の工程が終われば、アップデートは完了です。<br>
+                                        定期的に実行して、最新の状態を保ってください。
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -277,11 +373,10 @@
                             このソフトウェアは開発者巳波みなとによって無償で提供されています。ぜひ開発の支援をお願いします！
                         </p>
                         <p class="fs-5 mt-3">定期的に支援する</p>
-                        <a href="" class="btn btn-danger">Patreon</a>
-                        <a href="" class="btn btn-warning">PixivFanbox</a>
+                        <a href="https://minato86.fanbox.cc/" target="_blank" class="btn btn-warning">PixivFanbox</a>
                         <p class="fs-5 mt-3">1回だけ支援する</p>
-                        <a href="" class="btn btn-info">ko-fi</a>
-                        <a href="" class="btn btn-primary">PayPal</a>
+                        <a href="https://ko-fi.com/minato86" target="_blank" class="btn btn-info">ko-fi</a>
+                        <a href="https://paypal.me/openw?locale.x=ja_JP" target="_blank" class="btn btn-primary">PayPal</a>
                     </div>
                     <div class="modal-footer">
                         <button
