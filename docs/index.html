@@ -1,443 +1,337 @@
 <!DOCTYPE html>
 <html lang="ja">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Damare - Selfhost discord reading bot</title>
 
-        <meta name="description" content="自分で運営できる読み上げBotで、快適なDiscordライフを。">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Damare - Selfhost discord reading bot</title>
 
-        <!-- Google / Search Engine Tags -->
-        <meta itemprop="name" content="Damare - Selfhost discord reading bot">
-        <meta itemprop="description" content="自分で運営できる読み上げBotで、快適なDiscordライフを。">
-        <meta itemprop="image" content="https://i.gyazo.com/c515e55f015a3df9013743898d7b93a4.png">
+    <meta name="description" content="自分で運営できる読み上げBotで、快適なDiscordライフを。">
 
-        <!-- Facebook Meta Tags -->
-        <meta property="og:url" content="https://damare.m86.work">
-        <meta property="og:type" content="website">
-        <meta property="og:title" content="Damare - Selfhost discord reading bot">
-        <meta property="og:description" content="自分で運営できる読み上げBotで、快適なDiscordライフを。">
-        <meta property="og:image" content="https://i.gyazo.com/c515e55f015a3df9013743898d7b93a4.png">
+    <!-- Google / Search Engine Tags -->
+    <meta itemprop="name" content="Damare - Selfhost discord reading bot">
+    <meta itemprop="description" content="自分で運営できる読み上げBotで、快適なDiscordライフを。">
+    <meta itemprop="image" content="https://i.gyazo.com/c515e55f015a3df9013743898d7b93a4.png">
 
-        <!-- Twitter Meta Tags -->
-        <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:title" content="Damare - Selfhost discord reading bot">
-        <meta name="twitter:description" content="自分で運営できる読み上げBotで、快適なDiscordライフを。">
-        <meta name="twitter:image" content="https://i.gyazo.com/c515e55f015a3df9013743898d7b93a4.png">
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="https://damare.m86.work">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Damare - Selfhost discord reading bot">
+    <meta property="og:description" content="自分で運営できる読み上げBotで、快適なDiscordライフを。">
+    <meta property="og:image" content="https://i.gyazo.com/c515e55f015a3df9013743898d7b93a4.png">
 
-        <!-- Meta Tags Generated via http://heymeta.com -->
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Damare - Selfhost discord reading bot">
+    <meta name="twitter:description" content="自分で運営できる読み上げBotで、快適なDiscordライフを。">
+    <meta name="twitter:image" content="https://i.gyazo.com/c515e55f015a3df9013743898d7b93a4.png">
 
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
-            crossorigin="anonymous"
-        />
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
-            crossorigin="anonymous"
-        ></script>
+    <!-- Meta Tags Generated via http://heymeta.com -->
 
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7860710257272145"
-     crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
 
-        <style>
-            .global-nav {
-                width: 100%;
-                height: 35px;
-                margin-bottom: -5px;
-            }
-        </style>
-    </head>
-    <body>
-        <iframe
-            class="global-nav"
-            src="https://chipsnet.github.io/globalmenu/#software"
-            frameborder="0"
-        ></iframe>
-        <section class="shadow-sm" style="padding: 6em 10px">
-            <div class="container">
-                <h1>Damare</h1>
-                <p class="lead text-muted">
-                    自分で運営できるDiscordの読み上げBot
-                </p>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7860710257272145"
+        crossorigin="anonymous"></script>
 
-                <p>
-                    <a href="#usage" class="btn btn-primary my-2">始めてみる</a>
-                    <a href="https://github.com/Chipsnet/damare" target="_blank" class="btn btn-dark my-2">Github</a>
-                    <a
-                        href="#"
-                        class="btn btn-secondary my-2"
-                        data-bs-toggle="modal"
-                        data-bs-target="#donate"
-                        >開発を支援する</a
-                    >
-                </p>
+    <style>
+        .global-nav {
+            width: 100%;
+            height: 35px;
+            margin-bottom: -5px;
+        }
+    </style>
+</head>
+
+<body>
+    <iframe class="global-nav" src="https://chipsnet.github.io/globalmenu/#software" frameborder="0"></iframe>
+    <section class="shadow-sm" style="padding: 6em 10px">
+        <div class="container">
+            <h1>Damare</h1>
+            <p class="lead text-muted">
+                自分で運営できるDiscordの読み上げBot
+            </p>
+
+            <p>
+                <a href="#usage" class="btn btn-primary my-2">始めてみる</a>
+                <a href="https://github.com/Chipsnet/damare" target="_blank" class="btn btn-dark my-2">Github</a>
+                <a href="#" class="btn btn-secondary my-2" data-bs-toggle="modal" data-bs-target="#donate">開発を支援する</a>
+            </p>
+        </div>
+    </section>
+    <main>
+
+        <section id="info">
+            <div class="container py-5">
+                <h1 class="mb-5">お知らせ・更新情報</h1>
+                <div class="row mb-4 mb-sm-0">
+                    <div class="col">
+                        <p class="fs-5">2021年8月25日</p>
+                    </div>
+                    <div class="col-10">
+                        <a href="https://minato86.fanbox.cc/posts/2792756" target="blank_"
+                            class="fs-5">バージョン1.2.0を公開しました！</a>
+                    </div>
+                </div>
             </div>
         </section>
-        <main>
-            <!--
-                            <section id="info">
-                <div class="container py-5">
-                    <h1 class="mb-5">お知らせ・更新情報</h1>
-                    <div class="row mb-4 mb-sm-0">
-                        <div class="col">
-                            <p class="fs-5">2021年8月25日</p>
-                        </div>
-                        <div class="col-10">
-                            <a href="https://github.com/Chipsnet/damare/blob/master/docs/articles/2021-08-25.md" target="blank_" class="fs-5">バージョン1.2.0を公開、メンションとか読まなくなりました</a>
+
+        <section id="body">
+            <div class="container py-5">
+                <h1>できること</h1>
+                <div class="row row-cols-sm-2 row-cols-1 align-items-center my-5">
+                    <div class="col">
+                        <div class="ratio ratio-16x9">
+                            <iframe src="https://www.youtube.com/embed/kt_3HDIt3gQ" title="YouTube video player"
+                                allowfullscreen></iframe>
                         </div>
                     </div>
-                </div>
-            </section>
-            -->
-            <section id="body">
-                <div class="container py-5">
-                    <h1>できること</h1>
-                    <div class="row row-cols-sm-2 row-cols-1 align-items-center my-5">
-                        <div class="col">
-                            <div class="ratio ratio-16x9">
-                                <iframe
-                                    src="https://www.youtube.com/embed/kt_3HDIt3gQ"
-                                    title="YouTube video player"
-                                    allowfullscreen
-                                ></iframe>
-                            </div>
-                        </div>
-                        <div class="col text-sm-end my-sm-0 my-4">
-                            <h3>読み上げBotを自分のモノにしよう。</h3>
-                            <p class="my-4">
-                                既存の読み上げBotは重い？セキュリティが心配？<br />
-                                Damareを使用して自分のモノにすれば、全て解決です。
-                            </p>
-                        </div>
-                        <div class="col order-sm-2 text-center">
-                            <img src="free.svg" width="50%" alt="" srcset="" />
-                        </div>
-                        <div class="col order-sm-1 my-sm-0 my-4">
-                            <h3>永久に無料。</h3>
-                            <p class="my-4">
-                                有料のAPIを一切使っていないので、永久に無料で使うことができます。
-                            </p>
-                        </div>
+                    <div class="col text-sm-end my-sm-0 my-4">
+                        <h3>読み上げBotを自分のモノにしよう。</h3>
+                        <p class="my-4">
+                            既存の読み上げBotは重い？セキュリティが心配？<br />
+                            Damareを使用して自分のモノにすれば、全て解決です。
+                        </p>
+                    </div>
+                    <div class="col order-sm-2 text-center">
+                        <img src="free.svg" width="50%" alt="" srcset="" />
+                    </div>
+                    <div class="col order-sm-1 my-sm-0 my-4">
+                        <h3>永久に無料。</h3>
+                        <p class="my-4">
+                            有料のAPIを一切使っていないので、永久に無料で使うことができます。
+                        </p>
                     </div>
                 </div>
-            </section>
-            <section id="usage">
-                <div class="container py-5">
-                    <h1>始めよう</h1>
-                    <div class="accordion mt-4 mb-5" id="accordionExample">
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="headingOne">
-                                <button
-                                    class="accordion-button collapsed"
-                                    type="button"
-                                    data-bs-toggle="collapse"
-                                    data-bs-target="#collapseOne"
-                                    aria-expanded="false"
-                                    aria-controls="collapseOne"
-                                >
-                                    STEP1: 必要なものをインストールする
-                                </button>
-                            </h2>
-                            <div
-                                id="collapseOne"
-                                class="accordion-collapse collapse"
-                                aria-labelledby="headingOne"
-                                data-bs-parent="#accordionExample"
-                            >
-                                <div class="accordion-body">
-                                    <h4 class="my-3">必要なもの</h4>
-                                    <ul>
-                                        <li>
-                                            Windows
-                                            (10で動作確認済み、たぶん11でも動きます)
-                                        </li>
-                                        <li>Node.js</li>
-                                        <li>Microsoft .NET Framework4.0</li>
-                                        <li>Yarn</li>
-                                        <li>Git</li>
-                                    </ul>
-                                    <h4 class="my-4">Node.jsの導入</h4>
-                                    <img
-                                        src="https://i.gyazo.com/263fe21f090e9bb281f74915df9b46cd.png"
-                                        class="img-fluid shadow-sm"
-                                    /><br />
-                                    <p class="my-3">
-                                        <a
-                                            href="https://nodejs.org/ja/download/"
-                                            target="_blank"
-                                            >Node.jsダウンロードサイト</a
-                                        >を開き、Windows
-                                        Installerをクリックして、インストーラーをダウンロードします。<br />
-                                        その後、ダウンロードしたインストーラーを実行し、インストールします。
-                                    </p>
-                                    <h4 class="my-4">
-                                        Microsoft .NET Framework4.0の導入
-                                    </h4>
-                                    <img
-                                        src="https://i.gyazo.com/db62234a86775cb14319ae4d105b19e5.png"
-                                        class="img-fluid shadow-sm"
-                                    /><br />
-                                    <p class="my-3">
-                                        <a
-                                            href="https://www.microsoft.com/ja-jp/download/details.aspx?id=17851"
-                                            target="_blank"
-                                            >Microsoftのダウンロードサイト</a
-                                        >を開き、ダウンロードをクリックします。<br />
-                                        その後、ダウンロードしたファイルを実行し、インストールします。
-                                    </p>
-                                    <h4 class="my-4">Yarnの導入</h4>
-                                    <p class="mb-3">
-                                        Node.jsを導入している状態で、<code
-                                            >npm install -g yarn</code
-                                        >を実行すると導入ができます。<br />
-                                    </p>
-                                    <h4 class="my-4">Gitの導入</h4>
-                                    <p class="mb-3">
-                                        <img
-                                            src="https://i.gyazo.com/dd6c3882a02b75d2ce9551bc4655296b.png"
-                                            class="img-fluid shadow-sm mb-3"
-                                        /><br />
-                                        <a
-                                            href="https://git-scm.com/"
-                                            target="_blank"
-                                            >Git</a
-                                        >のサイトに行き、ダウンロード。その後実行してインストールします。
-                                    </p>
-                                </div>
+            </div>
+        </section>
+        <section id="usage">
+            <div class="container py-5">
+                <h1>始めよう</h1>
+                <div class="accordion mt-4 mb-5" id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                STEP1: 必要なものをインストールする
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <h4 class="my-3">必要なもの</h4>
+                                <ul>
+                                    <li>
+                                        Windows
+                                        (10で動作確認済み、たぶん11でも動きます)
+                                    </li>
+                                    <li>Node.js</li>
+                                    <li>Microsoft .NET Framework4.0</li>
+                                    <li>Yarn</li>
+                                    <li>Git</li>
+                                </ul>
+                                <h4 class="my-4">Node.jsの導入</h4>
+                                <img src="https://i.gyazo.com/263fe21f090e9bb281f74915df9b46cd.png"
+                                    class="img-fluid shadow-sm" /><br />
+                                <p class="my-3">
+                                    <a href="https://nodejs.org/ja/download/"
+                                        target="_blank">Node.jsダウンロードサイト</a>を開き、Windows
+                                    Installerをクリックして、インストーラーをダウンロードします。<br />
+                                    その後、ダウンロードしたインストーラーを実行し、インストールします。
+                                </p>
+                                <h4 class="my-4">
+                                    Microsoft .NET Framework4.0の導入
+                                </h4>
+                                <img src="https://i.gyazo.com/db62234a86775cb14319ae4d105b19e5.png"
+                                    class="img-fluid shadow-sm" /><br />
+                                <p class="my-3">
+                                    <a href="https://www.microsoft.com/ja-jp/download/details.aspx?id=17851"
+                                        target="_blank">Microsoftのダウンロードサイト</a>を開き、ダウンロードをクリックします。<br />
+                                    その後、ダウンロードしたファイルを実行し、インストールします。
+                                </p>
+                                <h4 class="my-4">Yarnの導入</h4>
+                                <p class="mb-3">
+                                    Node.jsを導入している状態で、<code>npm install -g yarn</code>を実行すると導入ができます。<br />
+                                </p>
+                                <h4 class="my-4">Gitの導入</h4>
+                                <p class="mb-3">
+                                    <img src="https://i.gyazo.com/dd6c3882a02b75d2ce9551bc4655296b.png"
+                                        class="img-fluid shadow-sm mb-3" /><br />
+                                    <a href="https://git-scm.com/"
+                                        target="_blank">Git</a>のサイトに行き、ダウンロード。その後実行してインストールします。
+                                </p>
                             </div>
                         </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="headingTwo">
-                                <button
-                                    class="accordion-button collapsed"
-                                    type="button"
-                                    data-bs-toggle="collapse"
-                                    data-bs-target="#collapseTwo"
-                                    aria-expanded="false"
-                                    aria-controls="collapseTwo"
-                                >
-                                    STEP2: トークンとSoftalkを準備する
-                                </button>
-                            </h2>
-                            <div
-                                id="collapseTwo"
-                                class="accordion-collapse collapse"
-                                aria-labelledby="headingTwo"
-                                data-bs-parent="#accordionExample"
-                            >
-                                <div class="accordion-body">
-                                    <h4 class="my-4">
-                                        Discord Developer
-                                        Portalでトークンを取得する
-                                    </h4>
-                                    <p class="mb-3">
-                                        <a
-                                            href="https://discord.com/developers/applications"
-                                            target="_blank"
-                                            >まずはDiscord Developer Portal</a
-                                        >にアクセスして、トークンを取得します。<br />
-                                        やり方は<a
-                                            href="https://cod-sushi.com/discord-py-token/"
-                                            target="_blank"
-                                            >こちら</a
-                                        >を参照
-                                    </p>
-                                    <h4 class="my-4">Softalkの準備</h4>
-                                    <p class="mb-3">
-                                        まずは<a
-                                            href="http://www.vector.co.jp/soft/winnt/art/se412443.html"
-                                            target="_blank"
-                                            >Softalk</a
-                                        >をダウンロードします。<br />
-                                        ダウンロードしたzipファイルを解凍して出てきた
-                                        <code>softalk</code> フォルダを、<code
-                                            >damare/softalk</code
-                                        >
-                                        に配置します。
-                                    </p>
-                                    <img
-                                        src="https://i.gyazo.com/eb34e124f0b9be97843163cf89497185.png"
-                                        class="img-fluid shadow-sm mb-3"
-                                    />
-                                    <p class="mb-3">
-                                        このようなディレクトリ構成になります。
-                                    </p>
-                                    <img
-                                        src="https://i.gyazo.com/a19435f44264640bbc57a80038a4922d.png"
-                                        class="img-fluid shadow-sm mb-3"
-                                    />
-                                    <p class="mb-3">
-                                        <code>録音</code
-                                        >タブを開き、<code>録音時は読み上げを省略する</code>にチェックを入れます。
-                                    </p>
-                                    <img
-                                        src="https://i.gyazo.com/e50302643ac4ca110999947dcf55ce91.png"
-                                        class="img-fluid shadow-sm mb-3"
-                                    />
-                                </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                STEP2: トークンとSoftalkを準備する
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <h4 class="my-4">
+                                    Discord Developer
+                                    Portalでトークンを取得する
+                                </h4>
+                                <p class="mb-3">
+                                    <a href="https://discord.com/developers/applications" target="_blank">まずはDiscord
+                                        Developer Portal</a>にアクセスして、トークンを取得します。<br />
+                                    やり方は<a href="https://cod-sushi.com/discord-py-token/" target="_blank">こちら</a>を参照
+                                </p>
+                                <h4 class="my-4">Softalkの準備</h4>
+                                <p class="mb-3">
+                                    まずは<a href="http://www.vector.co.jp/soft/winnt/art/se412443.html"
+                                        target="_blank">Softalk</a>をダウンロードします。<br />
+                                    ダウンロードしたzipファイルを解凍して出てきた
+                                    <code>softalk</code> フォルダを、<code>damare/softalk</code>
+                                    に配置します。
+                                </p>
+                                <img src="https://i.gyazo.com/eb34e124f0b9be97843163cf89497185.png"
+                                    class="img-fluid shadow-sm mb-3" />
+                                <p class="mb-3">
+                                    このようなディレクトリ構成になります。
+                                </p>
+                                <img src="https://i.gyazo.com/a19435f44264640bbc57a80038a4922d.png"
+                                    class="img-fluid shadow-sm mb-3" />
+                                <p class="mb-3">
+                                    <code>録音</code>タブを開き、<code>録音時は読み上げを省略する</code>にチェックを入れます。
+                                </p>
+                                <img src="https://i.gyazo.com/e50302643ac4ca110999947dcf55ce91.png"
+                                    class="img-fluid shadow-sm mb-3" />
                             </div>
                         </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="headingThree">
-                                <button
-                                    class="accordion-button collapsed"
-                                    type="button"
-                                    data-bs-toggle="collapse"
-                                    data-bs-target="#collapseThree"
-                                    aria-expanded="false"
-                                    aria-controls="collapseThree"
-                                >
-                                    STEP3: 設定して起動する
-                                </button>
-                            </h2>
-                            <div
-                                id="collapseThree"
-                                class="accordion-collapse collapse"
-                                aria-labelledby="headingThree"
-                                data-bs-parent="#accordionExample"
-                            >
-                                <div class="accordion-body">
-                                    <h4 class="my-4">Configファイルの作成</h4>
-                                    <img src="https://i.gyazo.com/0aa51c8cfa7735e0462f1ed9d206f836.png" class="img-fluid shadow-sm mb-3">
-                                    <p class="mb-3">
-                                        <code>damare/config.yml</code
-                                        >を作成して、以下のように記述します。<br>
-<pre>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                STEP3: 設定して起動する
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <h4 class="my-4">Configファイルの作成</h4>
+                                <img src="https://i.gyazo.com/0aa51c8cfa7735e0462f1ed9d206f836.png"
+                                    class="img-fluid shadow-sm mb-3">
+                                <p class="mb-3">
+                                    <code>damare/config.yml</code>を作成して、以下のように記述します。<br>
+                                <pre>
 <code>
 token: token
 useguild: guildId
 prefix: ";"
 </code>
 </pre>
-                                        <code>token</code>には、作成したトークンを入力します。<br>
-                                        <code>useguild</code>には、使用するサーバーのIDを入力します。<br>
-                                        <code>prefix</code>には、コマンドとして認識するための識別子を入力します。（例えばprefixに<code>;</code>を設定すると、コマンドは<code>;help</code>のようになります。）<br>
-                                    </p>
-                                    <h4 class="my-4">起動する</h4>
-                                    <p class="mb-3">
-                                        まず、<code>yarn install</code>を実行します。
-                                    </p>
-                                    <p class="mb-3">
-                                        次に、<code>yarn start</code>を実行します。<br>
-                                        これで起動ができました。<br>
-                                        次回からは、<code>yarn start</code>を実行するだけで実行できます。
-                                    </p>
-                                </div>
+                                <code>token</code>には、作成したトークンを入力します。<br>
+                                <code>useguild</code>には、使用するサーバーのIDを入力します。<br>
+                                <code>prefix</code>には、コマンドとして認識するための識別子を入力します。（例えばprefixに<code>;</code>を設定すると、コマンドは<code>;help</code>のようになります。）<br>
+                                </p>
+                                <h4 class="my-4">起動する</h4>
+                                <p class="mb-3">
+                                    まず、<code>yarn install</code>を実行します。
+                                </p>
+                                <p class="mb-3">
+                                    次に、<code>yarn start</code>を実行します。<br>
+                                    これで起動ができました。<br>
+                                    次回からは、<code>yarn start</code>を実行するだけで実行できます。
+                                </p>
                             </div>
                         </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="headingThree">
-                                <button
-                                    class="accordion-button collapsed"
-                                    type="button"
-                                    data-bs-toggle="collapse"
-                                    data-bs-target="#collapseFour"
-                                    aria-expanded="false"
-                                    aria-controls="collapseFour"
-                                >
-                                    アップデート方法
-                                </button>
-                            </h2>
-                            <div
-                                id="collapseFour"
-                                class="accordion-collapse collapse"
-                                aria-labelledby="headingFour"
-                                data-bs-parent="#accordionExample"
-                            >
-                                <div class="accordion-body">
-                                    <h4 class="my-4">アップデートを取得する</h4>
-                                    <p class="mb-3">
-                                        アップデートを取得します。<br>
-                                        <code>git pull</code>を実行します。<br>
-                                        <code>Already up to date.</code> と表示されたら、アップデートがありません。<br>
-                                        現時点では、アップデートがあるか自動で確認する機能はないので、定期的にコマンドを実行してアップデートを取得してください。
-                                    </p>
-                                    <h4 class="my-4">依存関係を更新する</h4>
-                                    <p class="mb-3">
-                                        <code>Already up to date.</code> が表示サれなかった場合、アップデートがあります。<br>
-                                        アップデートがあった場合、依存関係の更新が必要なことがあります。<br>
-                                        <code>yarn install</code>を実行します。
-                                    </p>
-                                    <p class="mb-3">
-                                        以上の工程が終われば、アップデートは完了です。<br>
-                                        定期的に実行して、最新の状態を保ってください。
-                                    </p>
-                                </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                アップデート方法
+                            </button>
+                        </h2>
+                        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <h4 class="my-4">アップデートを取得する</h4>
+                                <p class="mb-3">
+                                    アップデートを取得します。<br>
+                                    <code>git pull</code>を実行します。<br>
+                                    <code>Already up to date.</code> と表示されたら、アップデートがありません。<br>
+                                    現時点では、アップデートがあるか自動で確認する機能はないので、定期的にコマンドを実行してアップデートを取得してください。
+                                </p>
+                                <h4 class="my-4">依存関係を更新する</h4>
+                                <p class="mb-3">
+                                    <code>Already up to date.</code> が表示サれなかった場合、アップデートがあります。<br>
+                                    アップデートがあった場合、依存関係の更新が必要なことがあります。<br>
+                                    <code>yarn install</code>を実行します。
+                                </p>
+                                <p class="mb-3">
+                                    以上の工程が終われば、アップデートは完了です。<br>
+                                    定期的に実行して、最新の状態を保ってください。
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
-        </main>
-        <div
-            class="modal fade"
-            id="donate"
-            tabindex="-1"
-            aria-labelledby="exampleModalLabel"
-            aria-hidden="true"
-        >
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">
-                            開発を支援する
-                        </h5>
-                        <button
-                            type="button"
-                            class="btn-close"
-                            data-bs-dismiss="modal"
-                            aria-label="Close"
-                        ></button>
-                    </div>
-                    <div class="modal-body">
-                        <p>
-                            支援に興味をもって頂きありがとうございます！<br />
-                            このソフトウェアは開発者巳波みなとによって無償で提供されています。ぜひ開発の支援をお願いします！
-                        </p>
-                        <p class="fs-5 mt-3">定期的に支援する</p>
-                        <a href="https://minato86.fanbox.cc/" target="_blank" class="btn btn-warning">PixivFanbox</a>
-                        <p class="fs-5 mt-3">1回だけ支援する</p>
-                        <a href="https://ko-fi.com/minato86" target="_blank" class="btn btn-info">ko-fi</a>
-                        <a href="https://paypal.me/openw?locale.x=ja_JP" target="_blank" class="btn btn-primary">PayPal</a>
-                    </div>
-                    <div class="modal-footer">
-                        <button
-                            type="button"
-                            class="btn btn-primary"
-                            data-bs-dismiss="modal"
-                        >
-                            わかった！
-                        </button>
-                    </div>
+            </div>
+        </section>
+    </main>
+    <div class="modal fade" id="donate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                        開発を支援する
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        支援に興味をもって頂きありがとうございます！<br />
+                        このソフトウェアは開発者巳波みなとによって無償で提供されています。ぜひ開発の支援をお願いします！
+                    </p>
+                    <p class="fs-5 mt-3">定期的に支援する</p>
+                    <a href="https://minato86.fanbox.cc/" target="_blank" class="btn btn-warning">PixivFanbox</a>
+                    <p class="fs-5 mt-3">1回だけ支援する</p>
+                    <a href="https://ko-fi.com/minato86" target="_blank" class="btn btn-info">ko-fi</a>
+                    <a href="https://paypal.me/openw?locale.x=ja_JP" target="_blank" class="btn btn-primary">PayPal</a>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+                        わかった！
+                    </button>
                 </div>
             </div>
         </div>
-        <footer
-            class="bd-footer p-3 p-md-5 mt-5 bg-light text-center text-sm-start"
-        >
-            <div class="container">
-                <ul class="bd-footer-links ps-0 mb-3">
-                    <li class="d-inline-block">
-                        <a href="https://github.com/Chipsnet/damare">GitHub</a>
-                    </li>
-                    <li class="d-inline-block ms-3">
-                        <a href="https://twitter.com/minatoo86">Twitter</a>
-                    </li>
-                </ul>
-                <div>
-                    <p class="mb-0">
-                        Developed by Minato Minami.
-                    </p>
-                    <p class="mb-0">
-                        <a href="https://github.com/Chipsnet/damare/blob/master/LICENSE">MPL-2.0</a>
-                    </p><br>
-                    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-                </div>
+    </div>
+    <footer class="bd-footer p-3 p-md-5 mt-5 bg-light text-center text-sm-start">
+        <div class="container">
+            <ul class="bd-footer-links ps-0 mb-3">
+                <li class="d-inline-block">
+                    <a href="https://github.com/Chipsnet/damare">GitHub</a>
+                </li>
+                <li class="d-inline-block ms-3">
+                    <a href="https://twitter.com/minatoo86">Twitter</a>
+                </li>
+            </ul>
+            <div>
+                <p class="mb-0">
+                    Developed by Minato Minami.
+                </p>
+                <p class="mb-0">
+                    <a href="https://github.com/Chipsnet/damare/blob/master/LICENSE">MPL-2.0</a>
+                </p><br>
+                <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button"
+                    data-show-count="false">Tweet</a>
+                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
             </div>
-        </footer>
-    </body>
+        </div>
+    </footer>
+</body>
+
 </html>
