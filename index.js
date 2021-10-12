@@ -11,6 +11,9 @@ const yaml = require("js-yaml");
 const log = bunyan.createLogger({name: 'damare', level: 'debug'});
 
 log.info("Damare reading bot v" + packageJson.version);
+log.info("開発者: 巳波みなと Github: https://github.com/Chipsnet/damare")
+log.info("このソフトウェアを気に入ったら支援もお願いします！ https://ko-fi.com/minato86")
+log.info("------------------------------------------------------------------------------")
 
 log.info('🔎 Softalkを探しています...');
 
@@ -53,7 +56,7 @@ let readChannel = null;
 let prefix = config.prefix;
 
 client.on('ready', () => {
-    log.info('✨ Discordログイン完了！あなたのお名前：' + client.user.tag);
+    log.info('✨ Discordにユーザー名 '+client.user.tag+' でログインしました！');
 });
 
 client.on('message', async message => {

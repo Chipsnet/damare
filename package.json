@@ -1,6 +1,6 @@
 {
     "name": "damare",
-    "version": "1.2.0",
+    "version": "1.2.1 dev",
     "main": "index.js",
     "repository": "https://github.com/Chipsnet/damare.git",
     "author": "Minato Minami <doronomori660@outlook.jp>",
