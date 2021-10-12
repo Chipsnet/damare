@@ -12,10 +12,10 @@ const log = bunyan.createLogger({name: 'damare', level: 'debug'});
 
 log.info("Damare reading bot v" + packageJson.version);
 
-log.info('Checking softalk...');
+log.info('🔎 Softalkを探しています...');
 
 if (fs.existsSync('./softalk/SofTalk.exe')) {
-    log.info('Softalk found.');
+    log.info('✅ Softalkが見つかりました！');
 } else {
     log.error('Softalk not found. Can\'t Start damare. Please put softalk to current dir. If you want more info, visit https://github.com/Chipsnet/damare.');
     exit()
@@ -53,7 +53,7 @@ let readChannel = null;
 let prefix = config.prefix;
 
 client.on('ready', () => {
-    log.info('Discord login success! Logged in as : ' + client.user.tag);
+    log.info('✨ Discordログイン完了！あなたのお名前：' + client.user.tag);
 });
 
 client.on('message', async message => {
@@ -67,6 +67,7 @@ client.on('message', async message => {
             connection = await message.member.voice.channel.join();
             connection.play(broadcast, {volume: 0.3});
             message.reply('✨ VCに接続しました！');
+            log.info('💫 ボイスチャンネルに接続しました！')
         }
     }
 
@@ -175,4 +176,4 @@ chokidar.watch("./voice.wav").on('add', () => {
 
 
 client.login(config.token);
-log.info('Trying Login to discord...');
+log.info('🚀 Discordにログインを試みています...');
