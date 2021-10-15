@@ -9,6 +9,7 @@ const chokidar = require('chokidar');
 const yaml = require("js-yaml");
 
 const log = bunyan.createLogger({name: 'damare', level: 'debug'});
+let engDic = {};
 
 log.info("Damare reading bot v" + packageJson.version);
 log.info("開発者: 巳波みなと Github: https://github.com/Chipsnet/damare")
@@ -20,13 +21,39 @@ log.info('🔎 Softalkを探しています...');
 if (fs.existsSync('./softalk/SofTalk.exe')) {
     log.info('✅ Softalkが見つかりました！');
 } else {
-    log.error('Softalk not found. Can\'t Start damare. Please put softalk to current dir. If you want more info, visit https://github.com/Chipsnet/damare.');
+    log.error('😞 Softalkが見つかりませんでした。Softalkが正しく配置されてることを確認してください。詳しくはHPをご覧ください: https://damare.m86.work/');
     exit()
 }
 
 if (fs.existsSync('./voice.wav')) {
-    log.debug('Voice file found. Deleted.')
+    log.debug('🔥 voice.wavファイルが残っていました。削除します。')
     fs.unlinkSync('./voice.wav');
+}
+
+log.info('🔎 英語カタカナ変換表(bep-eng.dic)を探しています...');
+
+if (fs.existsSync('./bep-eng.dic')) {
+    log.info('✅ 英語カタカナ変換表(bep-eng.dic)が見つかりました！');
+    log.info('🔄 辞書データを読込中です...')
+
+    let dic = fs.readFileSync('./bep-eng.dic', 'utf8');
+    dic = dic.split('\n');
+
+    dic.forEach(function(line) {
+        if (line.startsWith('#')) {
+            return;
+        }
+
+        if (line === "") {
+            return;
+        }
+
+        let lineSplit = line.split(' ');
+        log.debug(`🔄 辞書データ ${lineSplit[0].toLowerCase()} → ${lineSplit[1]} を変換中...`)
+        engDic[lineSplit[0].toLowerCase()] = lineSplit[1];
+    })
+} else {
+    log.warn('😞 英語カタカナ変換表(bep-eng.dic)が見つかりませんでした。スムーズな変換を利用するには表のセットアップが必要です。詳しくはHPをご覧ください: https://damare.m86.work/')
 }
 
 try {
@@ -121,10 +148,25 @@ async function softalk() {
     log.debug(`canReadMessage set to ${canReadMessage} on softalk.`);
     let mes = readMessages.shift();
 
+    log.debug(`💬 以下のメッセージを変換します: ${mes}`)
+    mes = mes.toLowerCase();
+
     mes = mes.replace(/<.*?>/g, "")
     mes = mes.replace(/:.*?:/g, "")
     mes = mes.replace(/\|\|.*?\|\|/g, "伏せ字")
     mes = mes.replace(/(https?:\/\/[\x21-\x7e]+)/g, "ゆーあーるえる")
+
+    // log.debug(mes.split(/[A-Za-z0-9]+/g))
+
+    Object.keys(engDic).forEach(function(key) {
+        if (key.length <= 2) return;
+
+        // log.debug(`🔎 ${key} を探しています... 変換後: ${engDic[key]}`)
+        if (mes.match(new RegExp(key,'g'))) {
+            log.debug(`👀 ${key} が見つかりました！`)
+            mes = mes.replace(new RegExp(key,'g'), engDic[key]);
+        }
+    })
 
     mes = mes.split('|').join('')
     mes = mes.split(';').join('')
@@ -145,7 +187,7 @@ async function softalk() {
     mes = mes.split('!').join('')
     mes = mes.split('`').join('')
 
-    log.debug('Softalk talk message: ' + mes);
+    log.debug('🎤 メッセージを読み上げます:' + mes);
     log.debug('In queue' + readMessages);
 
     exec('"./softalk/SofTalk.exe" /NM:女性01 /R:' + __dirname + '\\voice.wav /T:0 /X:1 /V:100 /W:' + mes, { encoding: 'Shift_JIS' }, (error, stdout, stderr) => {
