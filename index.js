@@ -7,6 +7,9 @@ const { exit } = require('process');
 const Discord = require('discord.js');
 const chokidar = require('chokidar');
 const yaml = require("js-yaml");
+const TinySegmenter = require('tiny-segmenter')
+
+const segmenter = new TinySegmenter();
 
 const log = bunyan.createLogger({name: 'damare', level: 'debug'});
 let engDic = {};
@@ -156,18 +159,7 @@ async function softalk() {
     mes = mes.replace(/\|\|.*?\|\|/g, "伏せ字")
     mes = mes.replace(/(https?:\/\/[\x21-\x7e]+)/g, "ゆーあーるえる")
 
-    // log.debug(mes.split(/[A-Za-z0-9]+/g))
-
-    Object.keys(engDic).forEach(function(key) {
-        if (key.length <= 2) return;
-
-        // log.debug(`🔎 ${key} を探しています... 変換後: ${engDic[key]}`)
-        if (mes.match(new RegExp(key,'g'))) {
-            log.debug(`👀 ${key} が見つかりました！`)
-            mes = mes.replace(new RegExp(key,'g'), engDic[key]);
-        }
-    })
-
+    // 特殊文字・記号をエスケープ
     mes = mes.split('|').join('')
     mes = mes.split(';').join('')
     mes = mes.split('&').join('')
@@ -187,7 +179,42 @@ async function softalk() {
     mes = mes.split('!').join('')
     mes = mes.split('`').join('')
 
-    log.debug('🎤 メッセージを読み上げます:' + mes);
+    // log.debug(mes.split(/[A-Za-z0-9]+/g))
+    let seg = segmenter.segment(mes)
+
+    log.debug("📝 分かち書き結果: " + seg)
+
+    let convertedMes = ""
+
+    seg.forEach(function(content) {
+        log.debug(`🔎 ${content} を検索します...`)
+
+        if (content.match(/[^a-z]/gi)) {
+            log.debug(`✅ ${content} は英数字以外の文字列です。`)
+            convertedMes += content
+            return;
+        };
+
+        Object.keys(engDic).forEach(function(key) {
+            if (key.length <= 2) return;
+    
+            // log.debug(`🔎 ${key} を探しています... 変換後: ${engDic[key]}`)
+            if (content.match(new RegExp(key,'g'))) {
+    
+                if (!key.startsWith(content.charAt(0))) {
+                    log.debug("一文字目ではありません。charAt" + content.charAt(0))
+                    log.debug(engDic[key])
+                    return;
+                };
+    
+                log.debug(`👀 ${key} が見つかりました！`)
+                convertedMes += content.replace(new RegExp(key), engDic[key]);
+                return;
+            }
+        })
+    })
+
+    log.debug('🎤 メッセージを読み上げます:' + convertedMes);
     log.debug('In queue' + readMessages);
 
     exec('"./softalk/SofTalk.exe" /NM:女性01 /R:' + __dirname + '\\voice.wav /T:0 /X:1 /V:100 /W:' + mes, { encoding: 'Shift_JIS' }, (error, stdout, stderr) => {

@@ -16,6 +16,7 @@
         "discord.js": "^12.5.3",
         "encoding-japanese": "^1.0.30",
         "ffmpeg-static": "^4.4.0",
-        "js-yaml": "^4.1.0"
+        "js-yaml": "^4.1.0",
+        "tiny-segmenter": "^0.2.0"
     }
 }
