@@ -76,6 +76,9 @@ client.on('message', async message => {
 
             log.info(`💫 ボイスチャンネルに接続しました！チャンネル名: ${message.member.voice.channel.name}`);
             log.debug(`ℹ️  接続先チャンネル: ${message.member.voice.channel.name}, 実行ユーザ: ${message.author.tag}`)
+        } else {
+            message.reply('⚠️ まずはボイスチャンネルに接続してください！');
+            log.debug(`🚫 ユーザーがVCにいないため、接続できませんでした. 実行ユーザ: ${message.author.tag}`);
         }
     }
 
