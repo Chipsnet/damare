@@ -91,7 +91,7 @@ yarn start
 
 This work is licensed under the [Creative Commons Attribution 3.0 license.](https://creativecommons.org/licenses/by/3.0/deed.ja)
 
-<details><summary>LICENSE</summary><div>
+<details><summary>LICENSE</summary>
 
 ```txt
 ===============================================================================
@@ -197,4 +197,4 @@ HTS working group and a mailing list for HTS users can be found at
 http://hts.sp.nitech.ac.jp/
 ===============================================================================
 ```
-</div></details><summary>
+</details><summary>
