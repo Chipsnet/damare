@@ -16,8 +16,11 @@ log.info("Damare 読み上げBot v" + packageJson.version);
 log.info("開発者: 巳波みなと https://minato86.me")
 log.info("このソフトウェアが気に入ったらサポートをお願いします: https://ko-fi.com/minato86")
 
-let voiceClient = new OpenJtalk(log);
-let softalk2 = new Softalk(log);
+if (useVoiceClient == 1) {
+    let voiceClient = new Softalk(log);
+} else {
+    let voiceClient = new OpenJtalk(log);
+}
 
 if (fs.existsSync('./voice.wav')) {
     log.debug('⚠️  voice.wavが見つかりました、削除します')
