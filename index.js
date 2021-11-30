@@ -10,7 +10,9 @@ const yaml = require("js-yaml");
 
 const log = bunyan.createLogger({name: 'damare', level: 'debug'});
 
-log.info("Damare reading bot v" + packageJson.version);
+log.info("Damare 読み上げBot v" + packageJson.version);
+log.info("開発者: 巳波みなと https://minato86.me")
+log.info("このソフトウェアが気に入ったらサポートをお願いします: https://ko-fi.com/minato86")
 
 log.info('🔎 Softalkを探しています...');
 
@@ -22,8 +24,9 @@ if (fs.existsSync('./softalk/SofTalk.exe')) {
 }
 
 if (fs.existsSync('./voice.wav')) {
-    log.debug('Voice file found. Deleted.')
+    log.debug('⚠ voice.wavが見つかりました、削除します')
     fs.unlinkSync('./voice.wav');
+    log.debug('✅ voice.wavが削除されました')
 }
 
 try {
