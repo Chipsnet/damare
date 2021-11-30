@@ -6,7 +6,7 @@
     "author": "Minato Minami <doronomori660@outlook.jp>",
     "license": "GPL-2.0",
     "scripts": {
-        "start": "node index.js | bunyan -l debug"
+        "start": "nodemon index.js | bunyan -l debug"
     },
     "dependencies": {
         "@discordjs/opus": "^0.5.3",
@@ -17,5 +17,8 @@
         "ffmpeg-static": "^4.4.0",
         "iconv-lite": "^0.6.3",
         "js-yaml": "^4.1.0"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.15"
     }
 }
