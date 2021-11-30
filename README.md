@@ -85,7 +85,9 @@ yarn start
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/A0A81VPXD)
 
-## LICENSE
+## ライセンス 
+
+このソフトウェアに含まれるボイスデータや辞書データなどのライセンスを記載しています。
 
 ### [HTS Voice "NIT ATR503 M001" version 1.05](https://sourceforge.net/projects/open-jtalk/files/HTS%20voice/hts_voice_nitech_jp_atr503_m001-1.05/)
 
