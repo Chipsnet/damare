@@ -4,43 +4,39 @@ const Encoding = require('encoding-japanese');
 const packageJson = require('./package.json');
 const fs = require('fs');
 const OpenJtalk = require('./openjtalk')
-const { exit } = require('process');
+const Softalk = require('./softalk')
 const Discord = require('discord.js');
 const chokidar = require('chokidar');
 const yaml = require("js-yaml");
 
 const log = bunyan.createLogger({name: 'damare', level: 'debug'});
-
-let voiceClient = new OpenJtalk(log);
+const useVoiceClient = 1;
 
 log.info("Damare 読み上げBot v" + packageJson.version);
 log.info("開発者: 巳波みなと https://minato86.me")
 log.info("このソフトウェアが気に入ったらサポートをお願いします: https://ko-fi.com/minato86")
 
-log.info('🔎 Softalkを探しています...');
-
-if (fs.existsSync('./softalk/SofTalk.exe')) {
-    log.info('✅ Softalkが見つかりました！');
-} else {
-    log.error('Softalk not found. Can\'t Start damare. Please put softalk to current dir. If you want more info, visit https://github.com/Chipsnet/damare.');
-    exit()
-}
+let voiceClient = new OpenJtalk(log);
+let softalk2 = new Softalk(log);
 
 if (fs.existsSync('./voice.wav')) {
-    log.debug('⚠️ voice.wavが見つかりました、削除します')
+    log.debug('⚠️  voice.wavが見つかりました、削除します')
     fs.unlinkSync('./voice.wav');
     log.debug('✅ voice.wavが削除されました')
 }
 
 try {
+    log.debug("🔄 設定ファイルを読み込みます")
     config = yaml.load(
         fs.readFileSync("./config.yml", "utf-8")
     );
 } catch (error) {
-    log.fatal('Config file not found. Please make config file. More information: https://github.com/Chipsnet/warbot-js.')
+    log.fatal('💥 設定ファイルが見つかりませんでした. 起動には設定ファイルが必要です. 詳しくは公式サイトをご覧ください: https://damare.m86.work/')
     log.error(error);
-    process.exit(0)
+    process.exit(1);
 }
+
+log.debug('✅ 設定ファイルを読み込みました')
 
 function toString (bytes) {
     return Encoding.convert(bytes, {
@@ -72,19 +68,24 @@ client.on('message', async message => {
             readChannel = message.channel.id
             connection = await message.member.voice.channel.join();
             connection.play(broadcast, {volume: 0.3});
+            
             message.reply('✨ VCに接続しました！');
-            log.info('💫 ボイスチャンネルに接続しました！')
+
+            log.info(`💫 ボイスチャンネルに接続しました！チャンネル名: ${message.member.voice.channel.name}`);
+            log.debug(`ℹ️  接続先チャンネル: ${message.member.voice.channel.name}, 実行ユーザ: ${message.author.tag}`)
         }
     }
 
     if (message.content === `${prefix}stop`) {
         if (connection === null) {
-            message.reply('⚠ ボイスチャンネルに接続されていないので、切断ができませんでした。');
+            message.reply('⚠️ ボイスチャンネルに接続されていないので、切断ができませんでした。');
         } else {
             connection.disconnect();
-            message.reply('👍 無事切断できました')
             connection = null;
             readChannel = null;
+
+            message.reply('👍 無事切断できました')
+            log.info(`🛠️  VCから切断しました. 実行ユーザ: ${message.author.tag}`);
         }
     }
 
