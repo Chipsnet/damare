@@ -1,14 +1,17 @@
 const bunyan = require('bunyan');
-const { exec } = require('child_process');
+const { execFile } = require('child_process');
 const Encoding = require('encoding-japanese');
 const packageJson = require('./package.json');
 const fs = require('fs');
+const OpenJtalk = require('./openjtalk')
 const { exit } = require('process');
 const Discord = require('discord.js');
 const chokidar = require('chokidar');
 const yaml = require("js-yaml");
 
 const log = bunyan.createLogger({name: 'damare', level: 'debug'});
+
+let voiceClient = new OpenJtalk(log);
 
 log.info("Damare 読み上げBot v" + packageJson.version);
 log.info("開発者: 巳波みなと https://minato86.me")
@@ -24,7 +27,7 @@ if (fs.existsSync('./softalk/SofTalk.exe')) {
 }
 
 if (fs.existsSync('./voice.wav')) {
-    log.debug('⚠ voice.wavが見つかりました、削除します')
+    log.debug('⚠️ voice.wavが見つかりました、削除します')
     fs.unlinkSync('./voice.wav');
     log.debug('✅ voice.wavが削除されました')
 }
@@ -148,6 +151,9 @@ async function softalk() {
     log.debug('Softalk talk message: ' + mes);
     log.debug('In queue' + readMessages);
 
+    // voiceClient.createVoice(mes)
+
+    /*
     exec('"./softalk/SofTalk.exe" /NM:女性01 /R:' + __dirname + '\\voice.wav /T:0 /X:1 /V:100 /W:' + mes, { encoding: 'Shift_JIS' }, (error, stdout, stderr) => {
         if (error) {
             log.error("An error occurred while running Softalk.\n" + toString(stderr));
@@ -159,14 +165,56 @@ async function softalk() {
             return;
         }
     })
+    */
+
+    /*
+    execFile("./softalk/SofTalk.exe", ["/NM:女性01", `/R:${__dirname}\\voice.wav`, "/T:0", "/X:1", "/V:100", `/W:${mes}`], { encoding: "Shift_JIS" }, (error, stdout, stderr) => {
+        log.debug("execfile 終了")
+        if (error) {
+            log.error("An error occurred while running Softalk.\n" + toString(stderr));
+            if (readMessages.length) {
+                canReadMessage = true;
+            } else {
+                softalk();
+            }
+            return;
+        }
+
+        playVoice();
+    })
+    */
+
+    await voiceClient.createVoice(mes)
+
+    playVoice();
 }
 
-chokidar.watch("./voice.wav").on('add', () => {
+function playVoice() {
     log.debug('New file found.');
 
     let dispatcher = broadcast.play('./voice.wav');
 
     dispatcher.on('finish', () => {
+        log.debug("再生終了")
+
+        fs.unlinkSync('./voice.wav');
+        if (!readMessages.length) {
+            canReadMessage = true;
+            log.debug(`canReadMessage set to ${canReadMessage} by chokidar due to finish.`);
+        } else {
+            softalk();
+        }
+    })
+}
+
+chokidar.watch("./voicea.wav").on('add', () => {
+    log.debug('New file found.');
+
+    let dispatcher = broadcast.play('./voice.wav');
+
+    dispatcher.on('finish', () => {
+        log.debug("再生終了")
+
         fs.unlinkSync('./voice.wav');
         if (!readMessages.length) {
             canReadMessage = true;
