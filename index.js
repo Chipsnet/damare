@@ -32,7 +32,7 @@ try {
 }
 
 if (!config.voiceclient) {
-    log.warn("⚠️  設定ファイルにvoiceclientが設定されていません. デフォルト設定のSoftalkを使用します.")
+    log.warn("⚠️ 設定ファイルにvoiceclientが設定されていません. デフォルト設定のSoftalkを使用します.")
     useVoiceClient = 1;
 } else {
     useVoiceClient = config.voiceclient;
@@ -73,7 +73,7 @@ client.on('message', async message => {
             message.reply('✨ VCに接続しました！');
 
             log.info(`💫 ボイスチャンネルに接続しました！チャンネル名: ${message.member.voice.channel.name}`);
-            log.debug(`ℹ️  接続先チャンネル: ${message.member.voice.channel.name}, 実行ユーザ: ${message.author.tag}`)
+            log.debug(`ℹ️ 接続先チャンネル: ${message.member.voice.channel.name}, 実行ユーザ: ${message.author.tag}`)
         } else {
             message.reply('⚠️ まずはボイスチャンネルに接続してください！');
             log.debug(`🚫 ユーザーがVCにいないため、接続できませんでした. 実行ユーザ: ${message.author.tag}`);
@@ -89,7 +89,7 @@ client.on('message', async message => {
             readChannel = null;
 
             message.reply('👍 無事切断できました')
-            log.info(`🛠️  VCから切断しました. 実行ユーザ: ${message.author.tag}`);
+            log.info(`🛠️ VCから切断しました. 実行ユーザ: ${message.author.tag}`);
         }
     }
 
@@ -114,11 +114,11 @@ client.on('message', async message => {
 
     if (message.channel.id === readChannel && message.content != `${prefix}talk` && message.author.bot == false && message.content.startsWith(prefix) == false) {
         if (canReadMessage) {
-            log.debug(`Message recived. canReadMessage: ${canReadMessage}`)
+            log.debug(`ℹ️ テキストを受信しました. canReadMessage: ${canReadMessage}`)
             readMessages.push(message.content);
             createVoice();
         } else {
-            log.debug(`Message recived. canReadMessage: ${canReadMessage}`)
+            log.debug(`ℹ️ テキストを受信しました. canReadMessage: ${canReadMessage}`)
             readMessages.push(message.content);
         }
     }
@@ -155,7 +155,7 @@ function replaceString(mes) {
 function nextMessage() {
     if (!readMessages.length) {
         canReadMessage = true;
-        log.debug(`ℹ️  再生終了によりcanReadMessageが ${canReadMessage} に設定されました`);
+        log.debug(`ℹ️ 再生終了によりcanReadMessageが ${canReadMessage} に設定されました`);
     } else {
         createVoice();
     }
@@ -163,16 +163,16 @@ function nextMessage() {
 
 async function createVoice() {
     canReadMessage = false;
-    log.debug(`ℹ️  音声生成を開始するためcanReadMessageが ${canReadMessage} に設定されました`);
+    log.debug(`ℹ️ 音声生成を開始するためcanReadMessageが ${canReadMessage} に設定されました`);
     let mes = readMessages.shift();
 
-    log.debug("ℹ️  キューにあるメッセージ:", readMessages)
+    log.debug("ℹ️ キューにあるメッセージ:", readMessages)
     log.debug(`📝 変換前のテキスト: ${mes}`);
 
     mes = replaceString(mes);
     
     if (mes === "") {
-        log.debug("ℹ️  読み上げるテキストが空なので、読み上げをスキップします")
+        log.debug("ℹ️ 読み上げるテキストが空なので、読み上げをスキップします")
         nextMessage();
         return;
     }
