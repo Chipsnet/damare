@@ -6,7 +6,8 @@
     "author": "Minato Minami <doronomori660@outlook.jp>",
     "license": "GPL-2.0",
     "scripts": {
-        "start": "nodemon index.js | bunyan -l debug"
+        "start": "nodemon index.js | bunyan -l info",
+        "dev": "nodemon index.js | bunyan -l debug"
     },
     "dependencies": {
         "@discordjs/opus": "^0.5.3",
