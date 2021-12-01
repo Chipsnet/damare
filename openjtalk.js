@@ -19,9 +19,9 @@ module.exports = class {
         this.log.debug("📝 input.txtを生成します:", message)
 
         if (process.platform === 'win32') {
-            fs.writeFileSync('./openjtalk/input.txt', iconv.encode(message, 'shift_jis'));
+            fs.writeFileSync('./input.txt', iconv.encode(message, 'shift_jis'));
         } else {
-            fs.writeFileSync('./openjtalk/input.txt', message);
+            fs.writeFileSync('./input.txt', message);
         }
 
         execFileSync("open_jtalk", ["-m", this.htsvoice, "-x", this.dic, "-ow", "voice.wav", "./input.txt"]);
