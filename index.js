@@ -152,6 +152,15 @@ function replaceString(mes) {
     return mes;
 }
 
+function nextMessage() {
+    if (!readMessages.length) {
+        canReadMessage = true;
+        log.debug(`ℹ️  再生終了によりcanReadMessageが ${canReadMessage} に設定されました`);
+    } else {
+        createVoice();
+    }
+}
+
 async function createVoice() {
     canReadMessage = false;
     log.debug(`ℹ️  音声生成を開始するためcanReadMessageが ${canReadMessage} に設定されました`);
@@ -161,8 +170,21 @@ async function createVoice() {
     log.debug(`📝 変換前のテキスト: ${mes}`);
 
     mes = replaceString(mes);
+    
+    if (mes === "") {
+        log.debug("ℹ️  読み上げるテキストが空なので、読み上げをスキップします")
+        nextMessage();
+        return;
+    }
 
-    await voiceClient.createVoice(mes)
+    try {
+        await voiceClient.createVoice(mes)
+    } catch (error) {
+        log.error("🚫 音声の生成中にエラーが発生しました", error)        
+        nextMessage();
+        return;
+    }
+
     playVoice();
 }
 
@@ -175,12 +197,7 @@ function playVoice() {
 
         fs.unlinkSync('./voice.wav');
 
-        if (!readMessages.length) {
-            canReadMessage = true;
-            log.debug(`ℹ️  再生終了によりcanReadMessageが ${canReadMessage} に設定されました`);
-        } else {
-            createVoice();
-        }
+        nextMessage();
     })
 }
 
