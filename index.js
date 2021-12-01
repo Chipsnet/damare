@@ -7,18 +7,12 @@ const Discord = require('discord.js');
 const yaml = require("js-yaml");
 
 const log = bunyan.createLogger({name: 'damare', level: 'debug'});
-const useVoiceClient = 2;
+let useVoiceClient;
 let voiceClient;
 
 log.info("Damare 読み上げBot v" + packageJson.version);
 log.info("開発者: 巳波みなと https://minato86.me")
 log.info("このソフトウェアが気に入ったらサポートをお願いします: https://ko-fi.com/minato86")
-
-if (useVoiceClient == 1) {
-    voiceClient = new Softalk(log);
-} else if (useVoiceClient == 2) {
-    voiceClient = new OpenJtalk(log);
-}
 
 if (fs.existsSync('./voice.wav')) {
     log.debug('⚠️  voice.wavが見つかりました、削除します')
@@ -36,6 +30,20 @@ try {
     log.error(error);
     process.exit(1);
 }
+
+if (!config.voiceclient) {
+    log.warn("⚠️  設定ファイルにvoiceclientが設定されていません. デフォルト設定のSoftalkを使用します.")
+    useVoiceClient = 1;
+} else {
+    useVoiceClient = config.voiceclient;
+}
+
+if (useVoiceClient == 1) {
+    voiceClient = new Softalk(log);
+} else if (useVoiceClient == 2) {
+    voiceClient = new OpenJtalk(log);
+}
+
 
 log.debug('✅ 設定ファイルを読み込みました')
 
