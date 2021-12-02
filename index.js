@@ -130,6 +130,18 @@ client.on('message', async message => {
     }
 });
 
+client.on("voiceStateUpdate", () => {
+    if (connection === null) return;
+
+    if (connection.channel.members.size <= 1) {
+        connection.disconnect();
+        connection = null;
+        readChannel = null;
+
+        log.debug("🛠️ 誰もいなくなったため, VCから切断しました.")
+    }
+})
+
 function replaceString(mes) {
     mes = mes.replace(/<.*?>/g, "")
     mes = mes.replace(/:.*?:/g, "")
