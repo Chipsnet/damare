@@ -15,7 +15,7 @@ log.info("開発者: 巳波みなと https://minato86.me")
 log.info("このソフトウェアが気に入ったらサポートをお願いします: https://ko-fi.com/minato86")
 
 if (fs.existsSync('./voice.wav')) {
-    log.debug('⚠️  voice.wavが見つかりました、削除します')
+    log.debug('⚠️ voice.wavが見つかりました、削除します')
     fs.unlinkSync('./voice.wav');
     log.debug('✅ voice.wavが削除されました')
 }
