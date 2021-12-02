@@ -112,6 +112,7 @@ client.on('message', async message => {
             `${prefix}stop : 再生を停止してVCから切断します。\n` +
             `${prefix}reset : 読み上げ状態や内部のキューをリセットします。問題が発生した場合にのみ使用してください。\n` +
             `${prefix}help : ヘルプを表示します。\n` +
+            `${prefix}skip: 読み上げをスキップします。\n` +
             '```'
         );
     }
