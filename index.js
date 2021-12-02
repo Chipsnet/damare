@@ -48,7 +48,6 @@ if (useVoiceClient == 1) {
 log.debug('✅ 設定ファイルを読み込みました')
 
 const client = new Discord.Client();
-const broadcast = client.voice.createBroadcast();
 let connection = null;
 let readMessages = [];
 let canReadMessage = true;
@@ -68,7 +67,6 @@ client.on('message', async message => {
         if (message.member.voice.channel) {
             readChannel = message.channel.id
             connection = await message.member.voice.channel.join();
-            connection.play(broadcast, {volume: 0.3});
             
             message.reply('✨ VCに接続しました！');
 
@@ -190,7 +188,7 @@ async function createVoice() {
 
 function playVoice() {
     log.debug('📢 再生処理を開始しします');
-    let dispatcher = broadcast.play('./voice.wav');
+    let dispatcher = connection.play('./voice.wav', { volume: 1 });
 
     dispatcher.on('finish', () => {
         log.debug("✅ 再生が完了しました")
