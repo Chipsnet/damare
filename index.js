@@ -138,7 +138,7 @@ client.on("voiceStateUpdate", () => {
         connection = null;
         readChannel = null;
 
-        log.debug("🛠️ 誰もいなくなったため, VCから切断しました.")
+        log.info("🛠️ 誰もいなくなったため, VCから切断しました.")
     }
 })
 
