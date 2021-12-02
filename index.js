@@ -52,6 +52,7 @@ let connection = null;
 let readMessages = [];
 let canReadMessage = true;
 let readChannel = null;
+let dispatcher;
 let prefix = config.prefix;
 
 client.on('ready', () => {
@@ -95,6 +96,11 @@ client.on('message', async message => {
         readMessages = [];
         canReadMessage = true;
         message.reply('💥 読み上げ状態をリセットしました');
+    }
+
+    if (message.content === `${prefix}skip`) {
+        dispatcher.end();
+        log.debug(`ℹ️ ユーザーがスキップしました. 実行ユーザ: ${message.author.tag}`);
     }
 
     if (message.content === `${prefix}help`) {
@@ -188,14 +194,16 @@ async function createVoice() {
 
 function playVoice() {
     log.debug('📢 再生処理を開始しします');
-    let dispatcher = connection.play('./voice.wav', { volume: 1 });
+    dispatcher = connection.play('./voice.wav', { volume: 1 });
 
     dispatcher.on('finish', () => {
-        log.debug("✅ 再生が完了しました")
+        setTimeout(() => {
+            log.debug("✅ 再生が完了しました")
 
-        fs.unlinkSync('./voice.wav');
+            fs.unlinkSync('./voice.wav');
 
-        nextMessage();
+            nextMessage();
+        }, 1000)
     })
 }
 
