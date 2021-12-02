@@ -98,8 +98,9 @@ client.on('message', async message => {
         message.reply('💥 読み上げ状態をリセットしました');
     }
 
-    if (message.content === `${prefix}skip`) {
+    if (message.content === `${prefix}skip` || message.content === `${prefix}damare`) {
         dispatcher.end();
+        message.react('🤫');
         log.debug(`ℹ️ ユーザーがスキップしました. 実行ユーザ: ${message.author.tag}`);
     }
 
