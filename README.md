@@ -16,7 +16,6 @@ Windowsでのみ動作して、Softalkに依存しています。
 ## 前提条件
 
 - Windows
-- Microsoft .NET Framework4.0
 - Node.js
 - Yarn
 
@@ -40,6 +39,19 @@ cd damare
 yarn install
 ```
 
+### Softalkを使用する場合
+
+こちらの手順に従って、Softalkをセットアップします。
+
+<details><summary>Softalkのセットアップ手順</summary>
+
+## 対象デバイス
+
+- Windows
+
+## 手順
+
+このソフトウェアにはSoftalkが含まれていないので、まずはインストールします。     
 [Softalk](https://www.vector.co.jp/soft/winnt/art/se412443.html)をダウンロードして、解凍、中から出てきた `softalk` フォルダを `damare/softalk` に配置します。
 
 `damare/softalk/SofTalk.exe` を実行し、環境設定を開きます。
@@ -51,6 +63,11 @@ yarn install
 ![](https://i.gyazo.com/e50302643ac4ca110999947dcf55ce91.png)
 
 完了したらSoftalkを終了します。
+</details>
+
+### OpenJTalkを使用する場合
+
+こちらの手順に従って、OpenJTalkをセットアップします。
 
 [Discord Developer Portal](https://discord.com/developers/applications)にアクセスして、アプリケーションのトークンを取得します。
 
