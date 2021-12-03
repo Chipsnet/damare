@@ -41,7 +41,7 @@ yarn install
 
 ### Softalkを使用する場合
 
-こちらの手順に従って、Softalkをセットアップします。
+以下の手順に従って、Softalkをセットアップします。
 
 <details><summary>Softalkのセットアップ手順</summary>
 
@@ -67,7 +67,47 @@ yarn install
 
 ### OpenJTalkを使用する場合
 
-こちらの手順に従って、OpenJTalkをセットアップします。
+以下の手順に従って、OpenJTalkをセットアップします。
+
+<details><summary>OpenJTalkのセットアップ手順</summary>
+
+## 対象デバイス
+
+- Linux
+- Windows
+- Mac
+
+## 手順
+
+### Linuxの場合
+
+Ubuntuでは、以下のようにしてOpenJTalkをインストールします。
+
+```sh
+sudo apt install open-jtalk
+```
+
+Ubuntu以外でも同様にOpenJTalkをインストールします。     
+
+### Windowsの場合
+
+[Windowsで音声合成Open JTalk \- Qiita](https://qiita.com/mkgask/items/0bf9c26dc96e7b0b45ac)
+
+こちらの記事を参考に、OpenJTalkをインストールします。
+
+その後、OpenJTalkのフォルダにパスを通します。
+
+### Macの場合
+
+Homebrewインストール環境下で
+
+```sh
+brew install open-jtalk
+```
+
+と実行して、OpenJTalkをインストールします。
+
+</details>
 
 [Discord Developer Portal](https://discord.com/developers/applications)にアクセスして、アプリケーションのトークンを取得します。
 
