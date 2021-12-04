@@ -135,7 +135,7 @@ prefix: ";"
 voiceclient: 1 #Softalk(Windows): 1 / OpenJTalk(Mac/Windows/Linux/Docker): 2
 ```
 
-以下のコマンドで実行します
+Dockerを使用していない場合は、以下のコマンドで実行します
 
 ```bash
 yarn start
