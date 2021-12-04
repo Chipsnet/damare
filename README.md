@@ -141,6 +141,32 @@ voiceclient: 1 #Softalk(Windows): 1 / OpenJTalk(Mac/Windows/Linux/Docker): 2
 yarn start
 ```
 
+## Dockerを使用する場合
+リポジトリをクローンします
+```bash
+git clone https://github.com/Chipsnet/damare.git
+```
+
+リポジトリのディレクトリへ移動します
+```bash
+cd damare
+```
+
+[設定ファイル](https://github.com/unlimish/damare/tree/master#設定ファイル)にもとづいて設定します。
+
+Dockerイメージをビルドします。
+```bash
+docker build -t damare .
+```
+Dockerコンテナを`-d`デーモンとして起動します。
+```bash
+docker run -d damare
+```
+以下のコマンドを打つとDamareコンテナ内のログを見ることができます。
+```bash
+docker logs docker run後に表示されたuid
+```
+
 ## Q&A
 
 ### Botが読み上げなくなった
