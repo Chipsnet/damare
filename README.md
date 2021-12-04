@@ -1,6 +1,8 @@
-> ⚠ 注意       
-> v1.0.0以前には、脆弱性があります。必ず最新のバージョンを利用してください。       
-> すでにダウンロード済みの場合、git pullを実行することでアップデートが可能です。
+⚠ 注意
+```
+v1.0.0以前には、脆弱性があります。必ず最新のバージョンを利用してください。       
+すでにダウンロード済みの場合、git pullを実行することでアップデートが可能です。
+```
 
 # Damare
 
@@ -14,7 +16,6 @@ Windowsでのみ動作して、Softalkに依存しています。
 ## 前提条件
 
 - Windows
-- Microsoft .NET Framework4.0
 - Node.js
 - Yarn
 
@@ -38,6 +39,19 @@ cd damare
 yarn install
 ```
 
+### Softalkを使用する場合
+
+以下の手順に従って、Softalkをセットアップします。
+
+<details><summary>Softalkのセットアップ手順</summary>
+
+## 対象デバイス
+
+- Windows
+
+## 手順
+
+このソフトウェアにはSoftalkが含まれていないので、まずはインストールします。     
 [Softalk](https://www.vector.co.jp/soft/winnt/art/se412443.html)をダウンロードして、解凍、中から出てきた `softalk` フォルダを `damare/softalk` に配置します。
 
 `damare/softalk/SofTalk.exe` を実行し、環境設定を開きます。
@@ -49,6 +63,51 @@ yarn install
 ![](https://i.gyazo.com/e50302643ac4ca110999947dcf55ce91.png)
 
 完了したらSoftalkを終了します。
+</details>
+
+### OpenJTalkを使用する場合
+
+以下の手順に従って、OpenJTalkをセットアップします。
+
+<details><summary>OpenJTalkのセットアップ手順</summary>
+
+## 対象デバイス
+
+- Linux
+- Windows
+- Mac
+
+## 手順
+
+### Linuxの場合
+
+Ubuntuでは、以下のようにしてOpenJTalkをインストールします。
+
+```sh
+sudo apt install open-jtalk
+```
+
+Ubuntu以外でも同様にOpenJTalkをインストールします。     
+
+### Windowsの場合
+
+[Windowsで音声合成Open JTalk \- Qiita](https://qiita.com/mkgask/items/0bf9c26dc96e7b0b45ac)
+
+こちらの記事を参考に、OpenJTalkをインストールします。
+
+その後、OpenJTalkのフォルダにパスを通します。
+
+### Macの場合
+
+Homebrewインストール環境下で
+
+```sh
+brew install open-jtalk
+```
+
+と実行して、OpenJTalkをインストールします。
+
+</details>
 
 [Discord Developer Portal](https://discord.com/developers/applications)にアクセスして、アプリケーションのトークンを取得します。
 

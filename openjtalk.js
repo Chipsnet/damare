@@ -24,7 +24,7 @@ module.exports = class {
             fs.writeFileSync('./input.txt', message);
         }
 
-        execFileSync("open_jtalk", ["-m", this.htsvoice, "-x", this.dic, "-ow", "voice.wav", "./input.txt"]);
+        execFileSync("open_jtalk", ["-m", this.htsvoice, "-x", this.dic, , "-g", "9", "-ow", "voice.wav", "./input.txt"]);
         this.log.debug("🎤 voice.wavを生成しました")
 
         return;

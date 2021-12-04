@@ -15,7 +15,7 @@ log.info("開発者: 巳波みなと https://minato86.me")
 log.info("このソフトウェアが気に入ったらサポートをお願いします: https://ko-fi.com/minato86")
 
 if (fs.existsSync('./voice.wav')) {
-    log.debug('⚠️  voice.wavが見つかりました、削除します')
+    log.debug('⚠️ voice.wavが見つかりました、削除します')
     fs.unlinkSync('./voice.wav');
     log.debug('✅ voice.wavが削除されました')
 }
@@ -48,11 +48,11 @@ if (useVoiceClient == 1) {
 log.debug('✅ 設定ファイルを読み込みました')
 
 const client = new Discord.Client();
-const broadcast = client.voice.createBroadcast();
 let connection = null;
 let readMessages = [];
 let canReadMessage = true;
 let readChannel = null;
+let dispatcher;
 let prefix = config.prefix;
 
 client.on('ready', () => {
@@ -68,7 +68,6 @@ client.on('message', async message => {
         if (message.member.voice.channel) {
             readChannel = message.channel.id
             connection = await message.member.voice.channel.join();
-            connection.play(broadcast, {volume: 0.3});
             
             message.reply('✨ VCに接続しました！');
 
@@ -99,6 +98,12 @@ client.on('message', async message => {
         message.reply('💥 読み上げ状態をリセットしました');
     }
 
+    if (message.content === `${prefix}skip` || message.content === `${prefix}damare`) {
+        dispatcher.end();
+        message.react('🤫');
+        log.debug(`ℹ️ ユーザーがスキップしました. 実行ユーザ: ${message.author.tag}`);
+    }
+
     if (message.content === `${prefix}help`) {
         message.reply('```\n'+
             'Damare 読み上げBot コマンドリスト\n' +
@@ -108,6 +113,7 @@ client.on('message', async message => {
             `${prefix}stop : 再生を停止してVCから切断します。\n` +
             `${prefix}reset : 読み上げ状態や内部のキューをリセットします。問題が発生した場合にのみ使用してください。\n` +
             `${prefix}help : ヘルプを表示します。\n` +
+            `${prefix}skip: 読み上げをスキップします。\n` +
             '```'
         );
     }
@@ -123,6 +129,18 @@ client.on('message', async message => {
         }
     }
 });
+
+client.on("voiceStateUpdate", () => {
+    if (connection === null) return;
+
+    if (connection.channel.members.size <= 1) {
+        connection.disconnect();
+        connection = null;
+        readChannel = null;
+
+        log.info("🛠️ 誰もいなくなったため, VCから切断しました.")
+    }
+})
 
 function replaceString(mes) {
     mes = mes.replace(/<.*?>/g, "")
@@ -190,14 +208,16 @@ async function createVoice() {
 
 function playVoice() {
     log.debug('📢 再生処理を開始しします');
-    let dispatcher = broadcast.play('./voice.wav');
+    dispatcher = connection.play('./voice.wav', { volume: 1 });
 
     dispatcher.on('finish', () => {
-        log.debug("✅ 再生が完了しました")
+        setTimeout(() => {
+            log.debug("✅ 再生が完了しました")
 
-        fs.unlinkSync('./voice.wav');
+            fs.unlinkSync('./voice.wav');
 
-        nextMessage();
+            nextMessage();
+        }, 1000)
     })
 }
 
