@@ -171,7 +171,7 @@ docker logs docker run後に表示されたuid
 
 ### Botが読み上げなくなった
 
-内部エラーによりキューの処理が正常にされなかった可能性があります。      
+内部エラーによりキューの処理が正常にされなかった可能性があります。
 `reset`コマンドを実行してみてください。それでも直らない場合は`stop`で一度停止してから`talk`で再度読み上げ開始してみてください。
 
 それでも直らない場合はお手数ですがBotを再起動してください。
@@ -184,7 +184,7 @@ docker logs docker run後に表示されたuid
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/A0A81VPXD)
 
-## ライセンス 
+## ライセンス
 
 このソフトウェアに含まれるボイスデータや辞書データなどのライセンスを記載しています。
 
@@ -525,7 +525,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ```
 </details>
 
-### [HTS Voice "Mei"](https://sourceforge.net/projects/mmdagent/files/MMDAgent_Example/MMDAgent_Example-1.8/) 
+### [HTS Voice "Mei"](https://sourceforge.net/projects/mmdagent/files/MMDAgent_Example/MMDAgent_Example-1.8/)
 
 This work is licensed under the [Creative Commons Attribution 3.0 license.](https://creativecommons.org/licenses/by/3.0/deed.ja)
 
