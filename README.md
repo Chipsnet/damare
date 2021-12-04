@@ -125,7 +125,7 @@ Damareが使用する音声合成エンジンを指定します。<br>
 | 1      | Softalk   | Windows                  |
 | 2      | OpenJTalk | Mac/Winodws/Linux/Docker |
 
-__Docker/Macの場合は必ず`2`を指定してください__<br>
+__Mac/Linux/Dockerの場合は必ず`2`を指定してください__<br>
 指定しなかった場合は自動的にSoftalkが使用されます。
 
 ```yml
