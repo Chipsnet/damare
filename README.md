@@ -1,12 +1,12 @@
 ⚠ 注意
 ```
-v1.0.0以前には、脆弱性があります。必ず最新のバージョンを利用してください。       
+v1.0.0以前には、脆弱性があります。必ず最新のバージョンを利用してください。
 すでにダウンロード済みの場合、git pullを実行することでアップデートが可能です。
 ```
 
 # Damare
 
-DamareはDiscord読み上げBotです。    
+DamareはDiscord読み上げBotです。
 Windowsでのみ動作して、Softalkに依存しています。
 
 ## YouTube紹介動画
@@ -51,7 +51,7 @@ yarn install
 
 ## 手順
 
-このソフトウェアにはSoftalkが含まれていないので、まずはインストールします。     
+このソフトウェアにはSoftalkが含まれていないので、まずはインストールします。
 [Softalk](https://www.vector.co.jp/soft/winnt/art/se412443.html)をダウンロードして、解凍、中から出てきた `softalk` フォルダを `damare/softalk` に配置します。
 
 `damare/softalk/SofTalk.exe` を実行し、環境設定を開きます。
@@ -87,7 +87,7 @@ Ubuntuでは、以下のようにしてOpenJTalkをインストールします�
 sudo apt install open-jtalk
 ```
 
-Ubuntu以外でも同様にOpenJTalkをインストールします。     
+Ubuntu以外でも同様にOpenJTalkをインストールします。
 
 ### Windowsの場合
 
@@ -109,16 +109,30 @@ brew install open-jtalk
 
 </details>
 
-[Discord Developer Portal](https://discord.com/developers/applications)にアクセスして、アプリケーションのトークンを取得します。
+### 設定ファイル
 
-`damare/config.yml`を作成し、以下のように編集します。      
-guildIdでは、使用するサーバーのIDを入力してください。       
-prefixには、コマンドとして認識するための識別子を入力します。（例えばprefixに`;`を設定すると、コマンドは`;help`のようになります。）
+`damare/config.yml`を作成し、以下のように編集します。<br>
+#### `token`
+[Discord Developer Portal](https://discord.com/developers/applications)にアクセスして、取得したアプリケーションのトークンを貼り付けてください
+#### `guildId`
+使用するサーバーのIDを入力してください。<br>
+#### `prefix`
+コマンドとして認識するための識別子を入力します。（例えば`prefix`に`;`を設定すると、Discord内でコマンドを使用する際に`;help`のようになります。）
+#### `voiceclient`
+Damareが使用する音声合成エンジンを指定します。<br>
+| config | Engine    | Available                |
+|--------|-----------|--------------------------|
+| 1      | Softalk   | Windows                  |
+| 2      | OpenJTalk | Mac/Winodws/Linux/Docker |
+
+__Docker/Macの場合は必ず`2`を指定してください__<br>
+指定しなかった場合は自動的にSoftalkが使用されます。
 
 ```yml
 token: token
 useguild: guildId
 prefix: ";"
+voiceclient: 1 #Softalk(Windows): 1 / OpenJTalk(Mac/Windows/Linux/Docker): 2
 ```
 
 以下のコマンドで実行します
