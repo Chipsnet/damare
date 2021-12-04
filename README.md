@@ -164,7 +164,7 @@ docker run -d damare
 ```
 以下のコマンドを打つとDamareコンテナ内のログを見ることができます。
 ```bash
-docker logs docker run後に表示されたuid
+docker logs (docker run後に表示されたuid)
 ```
 
 ## Q&A
