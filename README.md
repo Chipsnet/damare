@@ -152,7 +152,7 @@ git clone https://github.com/Chipsnet/damare.git
 cd damare
 ```
 
-[設定ファイル](https://github.com/unlimish/damare/tree/master#設定ファイル)にもとづいて設定します。
+[設定ファイル](#設定ファイル)にもとづいて設定します。
 
 Dockerイメージをビルドします。
 ```bash
