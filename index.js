@@ -3,6 +3,7 @@ const packageJson = require('./package.json');
 const fs = require('fs');
 const OpenJtalk = require('./openjtalk')
 const Softalk = require('./softalk')
+const update = require('./update')
 const Discord = require('discord.js');
 const yaml = require("js-yaml");
 
@@ -13,6 +14,8 @@ let voiceClient;
 log.info("Damare 読み上げBot v" + packageJson.version);
 log.info("開発者: 巳波みなと https://minato86.me")
 log.info("このソフトウェアが気に入ったらサポートをお願いします: https://ko-fi.com/minato86")
+
+update(log, packageJson);
 
 if (fs.existsSync('./voice.wav')) {
     log.debug('⚠️ voice.wavが見つかりました、削除します')
