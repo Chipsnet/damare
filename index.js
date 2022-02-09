@@ -5,6 +5,7 @@ const OpenJtalk = require('./openjtalk')
 const Softalk = require('./softalk')
 const update = require('./update')
 const Discord = require('discord.js');
+const { joinVoiceChannel } = require('@discordjs/voice');
 const yaml = require("js-yaml");
 
 const log = bunyan.createLogger({name: 'damare', level: 'debug'});
@@ -50,7 +51,9 @@ if (useVoiceClient == 1) {
 
 log.debug('✅ 設定ファイルを読み込みました')
 
-const client = new Discord.Client();
+
+
+const client = new Discord.Client({ intents: [Discord.Intents.FLAGS.GUILDS, Discord.Intents.FLAGS.GUILD_MESSAGES, Discord.Intents.FLAGS.GUILD_VOICE_STATES] });
 let connection = null;
 let readMessages = [];
 let canReadMessage = true;
@@ -62,7 +65,7 @@ client.on('ready', () => {
     log.info('✨ Discordログイン完了！あなたのお名前：' + client.user.tag);
 });
 
-client.on('message', async message => {
+client.on('messageCreate', async message => {
     if (!message.guild) return;
 
     if (message.guild.id != config.useguild) return;
@@ -70,7 +73,11 @@ client.on('message', async message => {
     if (message.content === `${prefix}talk`) {
         if (message.member.voice.channel) {
             readChannel = message.channel.id
-            connection = await message.member.voice.channel.join();
+            connection = joinVoiceChannel({
+                guildId: message.guild.id,
+                channelId: message.member.voice.channel.id,
+                adapterCreator: message.guild.voiceAdapterCreator
+            })
             
             message.reply('✨ VCに接続しました！');
 
@@ -133,7 +140,10 @@ client.on('message', async message => {
     }
 });
 
+/*
 client.on("voiceStateUpdate", () => {
+    log.debug(client.voice.channel.name)
+
     if (connection === null) return;
 
     if (connection.channel.members.size <= 1) {
@@ -144,6 +154,7 @@ client.on("voiceStateUpdate", () => {
         log.info("🛠️ 誰もいなくなったため, VCから切断しました.")
     }
 })
+*/
 
 function replaceString(mes) {
     mes = mes.replace(/<.*?>/g, "")

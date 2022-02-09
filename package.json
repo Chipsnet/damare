@@ -11,6 +11,7 @@
     },
     "dependencies": {
         "@discordjs/opus": "^0.7.0",
+        "@discordjs/voice": "^0.8.0",
         "axios": "^0.25.0",
         "bunyan": "^1.8.15",
         "chokidar": "^3.5.2",
