@@ -451,10 +451,10 @@ event-target-shim@^5.0.0:
   resolved "https://registry.yarnpkg.com/event-target-shim/-/event-target-shim-5.0.1.tgz#5d4d3ebdf9583d63a5333ce2deb7480ab2b05789"
   integrity sha512-i/2XbnSz/uxRCU6+NdVJgKWDTM427+MqYbkQzD321DuCQJUqOuJKIA0IM2+W2xtYHdKOmZ4dR6fExsd4SXL+WQ==
 
-ffmpeg-static@^4.4.0:
-  version "4.4.0"
-  resolved "https://registry.yarnpkg.com/ffmpeg-static/-/ffmpeg-static-4.4.0.tgz#56f1fbff5dbfd33e368ce309333c8c12ffdafb77"
-  integrity sha512-NIJHVPXlSsIK9pYvsTPh4ZlppauorpPLLeOaIG7VOXWQck4Fx4Qi7Ahe+j8mj8KZXhWwCg3Hx46JdWAIOWLcpg==
+ffmpeg-static@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/ffmpeg-static/-/ffmpeg-static-5.0.0.tgz#adb2d083c5160e034c1053164d214953e061e368"
+  integrity sha512-z96jGVa8uCVMnyrTvbDZe0d5zbvIVQnfBN+vKDZoVK+ssYpfUJGEmo2DkuY43CA9Ytlsk+5ZVTFTqzvKw1gSaA==
   dependencies:
     "@derhuerst/http-basic" "^8.2.0"
     env-paths "^2.2.0"
