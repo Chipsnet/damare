@@ -15,7 +15,7 @@
         "bunyan": "^1.8.15",
         "chokidar": "^3.5.2",
         "discord.js": "^12.5.3",
-        "encoding-japanese": "^1.0.30",
+        "encoding-japanese": "^2.0.0",
         "ffmpeg-static": "^4.4.0",
         "iconv-lite": "^0.6.3",
         "js-yaml": "^4.1.0"
