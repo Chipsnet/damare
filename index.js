@@ -3,6 +3,7 @@ const packageJson = require('./package.json');
 const fs = require('fs');
 const OpenJtalk = require('./openjtalk')
 const Softalk = require('./softalk')
+const Voicebox = require('./voicebox')
 const update = require('./update')
 const Discord = require('discord.js');
 const yaml = require("js-yaml");
@@ -45,6 +46,8 @@ if (useVoiceClient == 1) {
     voiceClient = new Softalk(log);
 } else if (useVoiceClient == 2) {
     voiceClient = new OpenJtalk(log);
+} else if (useVoiceClient == 3) {
+    voiceClient = new Voicebox(log);
 }
 
 
