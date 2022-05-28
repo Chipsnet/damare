@@ -153,6 +153,7 @@ function replaceString(mes) {
     mes = mes.replace(/:.*?:/g, "")
     mes = mes.replace(/\|\|.*?\|\|/g, "伏せ字")
     mes = mes.replace(/(https?:\/\/[\x21-\x7e]+)/g, "ゆーあーるえる")
+    mes = mes.replace(/```[^]+?```/g, "")
 
     mes = mes.split('|').join('')
     mes = mes.split(';').join('')
@@ -172,6 +173,8 @@ function replaceString(mes) {
     mes = mes.split(']').join('')
     mes = mes.split('!').join('')
     mes = mes.split('`').join('')
+
+    console.log(mes);
 
     return mes;
 }
