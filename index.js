@@ -145,6 +145,10 @@ client.on("voiceStateUpdate", () => {
     }
 })
 
+client.on('shardError', error => {
+	console.error('A websocket connection encountered an error:', error);
+});
+
 function replaceString(mes) {
     mes = mes.replace(/<.*?>/g, "")
     mes = mes.replace(/:.*?:/g, "")
