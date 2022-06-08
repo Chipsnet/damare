@@ -5,7 +5,7 @@ const log = log4js.getLogger("Main")
 log.level = "debug"
 
 class Bot {
-    constructor(voiceClient) {
+    constructor(voiceClient, config) {
         this.connection = null;
         this.readMessages = null;
         this.canReadMessage = true;
@@ -13,6 +13,8 @@ class Bot {
         this.readChannel = null;
         this.voiceClient = voiceClient;
         this.client = new Discord.Client();
+        this.config = config;
+        this.prefix = this.config.prefix
     }
 
     async start() {
@@ -21,83 +23,87 @@ class Bot {
         });
         
         this.client.on('message', async message => {
-            if (!message.guild) return;
-        
-            if (message.guild.id != config.useguild) return;
-        
-            if (message.content === `${prefix}talk`) {
-                if (message.member.voice.channel) {
-                    readChannel = message.channel.id
-                    connection = await message.member.voice.channel.join();
-                    
-                    message.reply('✨ VCに接続しました！');
-        
-                    log.info(`💫 ボイスチャンネルに接続しました！チャンネル名: ${message.member.voice.channel.name}`);
-                    log.debug(`ℹ️ 接続先チャンネル: ${message.member.voice.channel.name}, 実行ユーザ: ${message.author.tag}`)
-                } else {
-                    message.reply('⚠️ まずはボイスチャンネルに接続してください！');
-                    log.debug(`🚫 ユーザーがVCにいないため、接続できませんでした. 実行ユーザ: ${message.author.tag}`);
+            try {
+                if (!message.guild) return;
+            
+                if (message.guild.id != config.useguild) return;
+            
+                if (message.content === `${this.prefix}talk`) {
+                    if (message.member.voice.channel) {
+                        this.readChannel = message.channel.id
+                        this.connection = await message.member.voice.channel.join();
+                        
+                        message.reply('✨ VCに接続しました！');
+            
+                        log.info(`💫 ボイスチャンネルに接続しました！チャンネル名: ${message.member.voice.channel.name}`);
+                        log.debug(`ℹ️ 接続先チャンネル: ${message.member.voice.channel.name}, 実行ユーザ: ${message.author.tag}`)
+                    } else {
+                        message.reply('⚠️ まずはボイスチャンネルに接続してください！');
+                        log.debug(`🚫 ユーザーがVCにいないため、接続できませんでした. 実行ユーザ: ${message.author.tag}`);
+                    }
                 }
-            }
-        
-            if (message.content === `${prefix}stop`) {
-                if (connection === null) {
-                    message.reply('⚠️ ボイスチャンネルに接続されていないので、切断ができませんでした。');
-                } else {
-                    connection.disconnect();
-                    connection = null;
-                    readChannel = null;
-        
-                    message.reply('👍 無事切断できました')
-                    log.info(`🛠️ VCから切断しました. 実行ユーザ: ${message.author.tag}`);
+            
+                if (message.content === `${this.prefix}stop`) {
+                    if (this.connection === null) {
+                        message.reply('⚠️ ボイスチャンネルに接続されていないので、切断ができませんでした。');
+                    } else {
+                        this.connection.disconnect();
+                        this.connection = null;
+                        this.readChannel = null;
+            
+                        message.reply('👍 無事切断できました')
+                        log.info(`🛠️ VCから切断しました. 実行ユーザ: ${message.author.tag}`);
+                    }
                 }
-            }
-        
-            if (message.content === `${prefix}reset`) {
-                readMessages = [];
-                canReadMessage = true;
-                message.reply('💥 読み上げ状態をリセットしました');
-            }
-        
-            if (message.content === `${prefix}skip` || message.content === `${prefix}damare`) {
-                dispatcher.end();
-                message.react('🤫');
-                log.debug(`ℹ️ ユーザーがスキップしました. 実行ユーザ: ${message.author.tag}`);
-            }
-        
-            if (message.content === `${prefix}help`) {
-                message.reply('```\n'+
-                    'Damare 読み上げBot コマンドリスト\n' +
-                    'Author:巳波みなと Version:v' + packageJson.version + '\n' +
-                    'https://github.com/Chipsnet/damare\n\n' +
-                    `${prefix}talk : 現在のテキストチャンネルを現在入っているVCで読み上げます。\n` +
-                    `${prefix}stop : 再生を停止してVCから切断します。\n` +
-                    `${prefix}reset : 読み上げ状態や内部のキューをリセットします。問題が発生した場合にのみ使用してください。\n` +
-                    `${prefix}help : ヘルプを表示します。\n` +
-                    `${prefix}skip: 読み上げをスキップします。\n` +
-                    '```'
-                );
-            }
-        
-            if (message.channel.id === readChannel && message.content != `${prefix}talk` && message.author.bot == false && message.content.startsWith(prefix) == false) {
-                if (canReadMessage) {
-                    log.debug(`ℹ️ テキストを受信しました. canReadMessage: ${canReadMessage}`)
-                    readMessages.push(message.content);
-                    createVoice();
-                } else {
-                    log.debug(`ℹ️ テキストを受信しました. canReadMessage: ${canReadMessage}`)
-                    readMessages.push(message.content);
+            
+                if (message.content === `${this.prefix}reset`) {
+                    readMessages = [];
+                    canReadMessage = true;
+                    message.reply('💥 読み上げ状態をリセットしました');
                 }
+            
+                if (message.content === `${this.prefix}skip` || message.content === `${this.prefix}damare`) {
+                    dispatcher.end();
+                    message.react('🤫');
+                    log.debug(`ℹ️ ユーザーがスキップしました. 実行ユーザ: ${message.author.tag}`);
+                }
+            
+                if (message.content === `${this.prefix}help`) {
+                    message.reply('```\n'+
+                        'Damare 読み上げBot コマンドリスト\n' +
+                        'Author:巳波みなと Version:v' + packageJson.version + '\n' +
+                        'https://github.com/Chipsnet/damare\n\n' +
+                        `${prefix}talk : 現在のテキストチャンネルを現在入っているVCで読み上げます。\n` +
+                        `${prefix}stop : 再生を停止してVCから切断します。\n` +
+                        `${prefix}reset : 読み上げ状態や内部のキューをリセットします。問題が発生した場合にのみ使用してください。\n` +
+                        `${prefix}help : ヘルプを表示します。\n` +
+                        `${prefix}skip: 読み上げをスキップします。\n` +
+                        '```'
+                    );
+                }
+            
+                if (message.channel.id === this.readChannel && message.content != `${this.prefix}talk` && message.author.bot == false && message.content.startsWith(this.prefix) == false) {
+                    if (canReadMessage) {
+                        log.debug(`ℹ️ テキストを受信しました. canReadMessage: ${canReadMessage}`)
+                        readMessages.push(message.content);
+                        createVoice();
+                    } else {
+                        log.debug(`ℹ️ テキストを受信しました. canReadMessage: ${canReadMessage}`)
+                        readMessages.push(message.content);
+                    }
+                }
+            } catch (error) {
+                log.fatal("🚫 メッセージの処理中にエラーが発生しました: ", error)
             }
         });
         
         this.client.on("voiceStateUpdate", () => {
-            if (connection === null) return;
+            if (this.connection === null) return;
         
-            if (connection.channel.members.size <= 1) {
-                connection.disconnect();
-                connection = null;
-                readChannel = null;
+            if (this.connection.channel.members.size <= 1) {
+                this.connection.disconnect();
+                this.connection = null;
+                this.readChannel = null;
         
                 log.info("🛠️ 誰もいなくなったため, VCから切断しました.")
             }
@@ -108,7 +114,7 @@ class Bot {
         });
 
         this.client.login(config.token);
-        
+
         log.info('🚀 Discordにログインを試みています...');
     }
 
@@ -141,7 +147,7 @@ class Bot {
 
     async playVoice() {
         log.debug('📢 再生処理を開始しします');
-        dispatcher = connection.play('./voice.wav', { volume: 1 });
+        dispatcher = this.connection.play('./voice.wav', { volume: 1 });
     
         dispatcher.on('finish', () => {
             setTimeout(() => {
@@ -152,6 +158,11 @@ class Bot {
                 nextMessage();
             }, 1000)
         })
+    }
+
+    logout() {
+        this.client.destroy()
+        this.client = new Discord.Client()
     }
 
     async nextMessage() {

@@ -52,10 +52,20 @@ if (useVoiceClient == 1) {
 
 log.debug('✅ 設定ファイルを読み込みました')
 
-const bot = new Bot(voiceClient)
+const bot = new Bot(voiceClient, config)
 
-try {
-    bot.start()
-} catch (error) {
-    log.fatal(error)
+process.on('uncaughtException', function(err) {
+    log.fatal("🚫 プロセスでエラーが発生しました.", err);
+    bot.logout()
+    startBotProcess()
+});
+
+function startBotProcess() {
+    try {
+        bot.start()
+    } catch (error) {
+        log.fatal(error)
+    }
 }
+
+startBotProcess()
