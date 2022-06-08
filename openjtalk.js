@@ -1,10 +1,14 @@
 const { execFileSync } = require('child_process');
 const iconv = require('iconv-lite');
 const fs = require('fs');
+const log4js = require('log4js')
+
+const log = log4js.getLogger("Boot")
+log.level = "debug"
 
 module.exports = class {
     constructor(log) {
-        this.log = log.child({ module: 'openjtalk' });
+        this.log = log
         //this.htsvoice = "./openjtalk/voice/hts_voice_nitech_jp_atr503_m001-1.05/nitech_jp_atr503_m001.htsvoice";
         this.htsvoice = "./openjtalk/voice/mei/mei_normal.htsvoice";
 

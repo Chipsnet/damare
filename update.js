@@ -1,8 +1,10 @@
+const log4js = require('log4js')
 const axios = require("axios")
 
-module.exports = async function(bunyan, packageJson) {
-    let log = bunyan.child({ module: 'update' });
+const log = log4js.getLogger("Update")
+log.level = "debug"
 
+module.exports = async function(packageJson) {
     log.info("🔍 アップデートを確認しています...")
 
     try { 
