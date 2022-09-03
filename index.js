@@ -3,6 +3,7 @@ const packageJson = require('./package.json');
 const fs = require('fs');
 const OpenJtalk = require('./openjtalk')
 const Softalk = require('./softalk')
+const Voicebox = require('./voicebox')
 const update = require('./update')
 const Discord = require('discord.js');
 const yaml = require("js-yaml");
@@ -45,6 +46,8 @@ if (useVoiceClient == 1) {
     voiceClient = new Softalk(log);
 } else if (useVoiceClient == 2) {
     voiceClient = new OpenJtalk(log);
+} else if (useVoiceClient == 3) {
+    voiceClient = new Voicebox(log);
 }
 
 
@@ -150,6 +153,7 @@ function replaceString(mes) {
     mes = mes.replace(/:.*?:/g, "")
     mes = mes.replace(/\|\|.*?\|\|/g, "伏せ字")
     mes = mes.replace(/(https?:\/\/[\x21-\x7e]+)/g, "ゆーあーるえる")
+    mes = mes.replace(/```[^]+?```/g, "")
 
     mes = mes.split('|').join('')
     mes = mes.split(';').join('')
@@ -169,6 +173,8 @@ function replaceString(mes) {
     mes = mes.split(']').join('')
     mes = mes.split('!').join('')
     mes = mes.split('`').join('')
+
+    console.log(mes);
 
     return mes;
 }
